@@ -7,22 +7,19 @@ using namespace std;
 /*file haie ma shamel : accounts baraie account ha
 customer baraie atelaat moshtary ha
 drivers baraie ranande ha
-nessesary baraie atelaat digar mesle leader dar khat aval*/
-struct date
-{
-  int day;
-  int month;
-  int year;
-}
+nessesary baraie atelaat digar mesle leader dar khat aval
+travel-history baraie tarikhche safar ha*/
+
 struct history   //struct history is for history of travels
 
 {
   int number;
   char bigining[30];
   char distination[30];
-  int  price;
-  struct date d;
-
+  int  price; //gheimat har belit
+  int date[3];//1 for year    2 for mounth      3 for day
+  char sarneshinan[50][30];
+  char ranande[30];
 }
 struct leader //first pass=a      firs user=a
 {
@@ -34,7 +31,9 @@ struct driver
 	char username[30];
 	char password[30];
 	struct accont a;
-	struct history h[10000];
+    int balance;
+	int pass;
+	int inventory;//mojodi
 }
 struct account
 {
@@ -52,9 +51,9 @@ struct customer
   char phone[15];
   
   int moaref;
-  struct account;
-  struct history h[1000];
-  
+  int balance;
+  int pass;
+  int inventory;//mojodi  
 }
 void edit-karbar()
 {
