@@ -8,7 +8,8 @@ using namespace std;
 customer baraie atelaat moshtary ha
 drivers baraie ranande ha
 nessesary baraie atelaat digar mesle leader dar khat aval
-travel-history baraie tarikhche safar ha*/
+travel-history baraie tarikhche safar ha
+travels baraie safar haie alan*/
 
 struct history   //struct history is for history of travels
 
@@ -30,7 +31,6 @@ struct driver
 {
 	char username[30];
 	char password[30];
-	struct accont a;
     int balance;
 	int pass;
 	int inventory;//mojodi
@@ -93,13 +93,13 @@ int log-in()
 				cout<<"enter your username: \t";
 		        scanf("%S",user);
 		        f1.read((char *)l1,sizeof(struct leader));
-		        if(strcmp(user,l1.username)>0)
+		        if(strcmp(user,l1.username))
 		        {
 		        	for(int i=0;i<3;i++)
 		        	{
 		        		scanf<<"enter your password : \t";
 		        	    scanf("%s",pass);
-		          	    if(strcmp(pass,l1.pass)>0)
+		          	    if(strcmp(pass,l1.pass))
 					    {
 						    cout<<"\n you log in as a leader : \t"
 					        f1.close();
