@@ -4,6 +4,7 @@
 #include<iostream>
 #include<istream>
 #include<fstream>
+#include<string>
 using namespace std;
 
 struct account

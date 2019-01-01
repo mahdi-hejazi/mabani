@@ -12,6 +12,7 @@ struct account
 	int pass;
 	int inventory;//mojodi
 };
+
 int main()
 {
 	struct account a,b; //a baraye gereftan az file  va b baraie gereftan az karbar

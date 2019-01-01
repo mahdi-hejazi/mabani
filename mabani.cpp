@@ -12,7 +12,6 @@ travel-history baraie tarikhche safar ha
 travels baraie safar haie alan*/
 
 struct history   //struct history is for history of travels
-
 {
   int number;
   char bigining[30];
@@ -21,7 +20,7 @@ struct history   //struct history is for history of travels
   int date[3];//1 for year    2 for mounth      3 for day
   char sarneshinan[50][30];
   char ranande[30];
-}
+};
 struct leader //first pass=a      firs user=a
 {
 	char password[30];
@@ -29,7 +28,7 @@ struct leader //first pass=a      firs user=a
 	int balance;
 	int pass;
 	int inventory;//mojodi
-}
+};
 struct driver
 {
 	char username[30];
@@ -37,13 +36,13 @@ struct driver
     int balance;
 	int pass;
 	int inventory;//mojodi
-}
+};
 struct account
 {
 	int balance;
 	int pass;
 	int inventory;//mojodi
-}
+};
 struct customer
 {
   char username[30];
@@ -57,7 +56,7 @@ struct customer
   int balance;
   int pass;
   int inventory;//mojodi  
-}
+};
 void edit-karbar()
 {
 	ifstream f1("customer",ios :: binary);
