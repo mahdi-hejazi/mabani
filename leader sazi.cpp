@@ -56,7 +56,7 @@ int main()
 	 				l1.balance=a.balance;
 	 				l1.pass=a.pass;
 	 				l1.inventory=a.inventory;
-	 				ofstream f2("nessesray",ios :: binary);
+	 				ofstream f2("nessesary",ios :: binary);
                    	if(!f2)
                        	{
 	                  	cout<<"error in opening a file for leader with the name nessesary\n";
