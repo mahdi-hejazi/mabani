@@ -24,8 +24,11 @@ struct history   //struct history is for history of travels
 }
 struct leader //first pass=a      firs user=a
 {
-	char pass[30];
+	char password[30];
 	char username[30];
+	int balance;
+	int pass;
+	int inventory;//mojodi
 }
 struct driver
 {
