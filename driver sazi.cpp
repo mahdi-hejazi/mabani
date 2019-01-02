@@ -16,6 +16,7 @@ struct driver
 {
 	char username[30];
 	char password[30];
+	int vasile;//1bus 2train 3plan
     int balance;
 	int pass;
 	int inventory;//mojodi
@@ -23,11 +24,36 @@ struct driver
 
 int main()
 {
-	struct driver d1;
+	struct driver d1,d2;//d1 for karbar   d2 for file
 	cout<<"\n enter name of driver :\t";
 	scanf("%s",d1.username);
+	
+		ifstream f3("drivers",ios :: binary);
+	
+		if(!f3)
+	 {
+	   cout<<"error in opening drivers binary file";
+	   exit(1);
+	 }
+	 
+	while(!f3.eof())
+	{
+		f3.read((char *)&d2, sizeof(struct driver));
+		if(strcmp(d1.username,d2.username)==0)
+		{
+			cout<<"\n your user name is used befor.\nplease enter another user name:\t";
+			scanf("%s",d1.username);
+			f3.seekg(0,ios :: beg);
+		}
+		
+	}
+	f3.close();
+	
+	
 	cout<<"\n enter pasword of driver :\t";
 	scanf("%s",d1.password);
+	cout<<"\n enter the number of your vaicle?(1:bus 2:train 3:plane)\n";
+	cin>>d1.vasile;
 	struct account a,b; //a baraye gereftan az file  va b baraie gereftan az karbar
 	ifstream f1("accounts", ios :: binary);
 	if(!f1)
@@ -79,9 +105,10 @@ int main()
 	 if(i=='n') 
 	 {
 	 	cout <<"good bye\n";
+	 	f1.close();
 	 	return 0;
 	 }
-	 f1.close();
+	
 	}
 	
 

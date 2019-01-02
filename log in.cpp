@@ -35,6 +35,7 @@ struct driver
 {
 	char username[30];
 	char password[30];
+	int vasile;
     int balance;
 	int pass;
 	int inventory;//mojodi
@@ -50,15 +51,14 @@ struct customer
   char username[30];
   char name[30];
   char family[30];
-  
   char password[30];
   char phone[15];
-  
-  int moaref;
+  char moaref[30];
   int balance;
   int pass;
   int inventory;//mojodi  
 };
+
 
 int main()
 {
@@ -82,21 +82,17 @@ int main()
 			{
 				
 				cout<<"\n enter your username: \t";
-		        scanf("%S",user);
+		        scanf("%s",user);
+		       
 		        f1.read((char *)&l1,sizeof(struct leader));
-		        //////
-		      //  cout<<strcmp(user,l1.username)<<endl;
-		      //  printf("%s \n",l1.username);
-		        //////
-
-		        if(strcmp(user,l1.username)==1)
+		        if(strcmp(user,l1.username)==0)
 		        {
 		        	for(int i=0;i<3;i++)
 		        	{
 		        		cout<<"enter your password : \t";
 		        	    scanf("%s",pass);
 		        	    
-		          	    if(strcmp(pass,l1.password)==1)
+		          	    if(strcmp(pass,l1.password)==0)
 					    {
 						    cout<<"\n you log in as a leader : \t";
 					        f1.close();
@@ -143,12 +139,12 @@ int main()
 			{
 				
 				cout<<"\n enter your username: \t";
-		        scanf("%S",user);
-		        f1.read((char *)&d1,sizeof(struct driver));
-		        //////
-		      // cout<<strcmp(user,d1.username)<<endl;
-		       //printf("%s \n",d1.username);
-		        //////
+		        scanf("%s",user);
+		        f1.seekg(0,ios::beg);
+		        while(!f1.eof())
+		        {
+		        	f1.read((char *)&d1,sizeof(struct driver));
+		       
 
 		        if(strcmp(user,d1.username)==0)
 		        {
@@ -174,7 +170,8 @@ int main()
 					exit(0);
 		        	
 				}
-				else
+				}
+				
 				{
 					cout << " your user name is false. \n do you want to enter another one?(y/n)"<<endl;
 					char s;
@@ -194,7 +191,7 @@ int main()
 			{
 				struct customer c1;
 				 char user[30],pass[30];
-			   	  	ifstream f1("customer", ios :: binary);
+			   	  	ifstream f1("customers", ios :: binary);
 			if(!f1)
 		    	{
 			        cout<<"error in opening file customer in login";
@@ -202,16 +199,19 @@ int main()
 		    	}
 		    while(1)
 			{
-				
+				struct customer c1;//c1 bara gereftan az file 
 				cout<<"\n enter your username: \t";
-		        scanf("%S",user);
-		        f1.read((char *)&c1,sizeof(struct customer));
+		        scanf("%s",username);
+		        
+		        while(! f1.eof())
+		        {
+		        	f1.read((char *)&c1,sizeof(struct customer));
 		        //////
 		      // cout<<strcmp(user,c1.username)<<endl;
 		       //printf("%s \n",c1.username);
 		        //////
 
-		        if(strcmp(user,c1.username)==0)
+		        if(strcmp(username,c1.username)==0)
 		        {
 		        	for(int i=0;i<3;i++)
 		        	{
@@ -220,7 +220,7 @@ int main()
 		        	    
 		          	    if(strcmp(pass,c1.password)==0)
 					    {
-						    cout<<"\n you log in as a driver : \t";
+						    cout<<"\n you log in as a customer : \t";
 					        f1.close();
 					        return 3;
 					    }
@@ -235,7 +235,10 @@ int main()
 					exit(0);
 		        	
 				}
-				else
+				f1.seekg(0,ios :: beg);
+				}
+		        
+				
 				{
 					cout << " your user name is false. \n do you want to enter another one?(y/n)"<<endl;
 					char s;
@@ -250,7 +253,8 @@ int main()
 			}	
 	       
 			}
-	    case 4 : {
+	    case 4 : 
+		{
 	    	cout<<"you are log\n ";
 			break;
 		}
