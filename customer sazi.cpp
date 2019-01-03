@@ -31,7 +31,7 @@ int main()  //sign in customer success = return 1;
 	cout<<"HELLO \n enter you user name :\t";
 	scanf("%s",c2.username);
 	
-	ifstream f3("customers",ios :: binary);
+/*	ifstream f3("customers",ios :: binary);
 	
 		if(!f3)
 	 {
@@ -50,12 +50,14 @@ int main()  //sign in customer success = return 1;
 		}
 		
 	}
-	f3.close();
+	f3.close();*/
 	
 	cout<<"enter your passeord:\t";
 	scanf("%s",c2.password);
 	cout<<"enter the user name of your moaref (if you do not have just enter 0):\t";
 	scanf("%s",c2.moaref);
+	cout<<"enter your phone number";
+	printf("%s",c2.phone);
 	//f1.seekg(0,ios :: beg);
     ifstream f1("accounts", ios :: binary );
     	if(!f1)

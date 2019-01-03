@@ -13,13 +13,14 @@ using namespace std;
 struct history   //struct history is for history of travels
 {
   int number;
-  char bigining[30];
-  char distination[30];
+  int bigining;
+  int distination;
   int  price; //gheimat har belit
   int date[3];//1 for year    2 for mounth      3 for day
   char sarneshinan[50][30];
   char ranande[30];
   int capasity;//zarfiat
+  int time; //time of this travel
 };
 struct leader //first pass=a      firs user=a
 {

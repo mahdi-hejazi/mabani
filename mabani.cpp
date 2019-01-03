@@ -16,13 +16,14 @@ travels baraie safar haie alan*/
 /*struct history   //struct history is for history of travels
 {
   int number;
-  char bigining[30];
-  char distination[30];
+  int bigining;
+  int distination;
   int  price; //gheimat har belit
   int date[3];//1 for year    2 for mounth      3 for day
   char sarneshinan[50][30];
   char ranande[30];
   int capasity;//zarfiat
+  int time; //time of this travel
 };
 struct leader //first pass=a      firs user=a
 {
@@ -59,33 +60,33 @@ struct customer
   int pass;
   int inventory;//mojodi  
 };*/
-void editkarbar()
+int editkarbar()
 {
 	int a;//khat bado bekhon
-	cout<<"what do you you want to edit?\n1:password\t 2:username and password \t 3:account";
+	cout<<"what do you you want to edit?\n1:password\t 2:username and password \t 3:account\n";
 	cin>>a;
 	if(a==1)
 	{
 		struct customer c1,c2;//c1 for karbar c2 for file
 		cout<<"enter your username:\t";
 		scanf("%s",c2.username);
-		fstream f1("customers",ios :: binary);
-		while(! f1.eof())
+		fstream f1("customers",ios::in | ios::out | ios:: binary);
+		while(!f1.eof())
 		{
 			f1.read((char *)&c1,sizeof(struct customer));
 			if(strcmp(c1.username,c2.username)==0)
 			{
 				cout<<"\n enter your new password:\t";
 				scanf("%s",c1.password);
-				f1.seekg(-1*sizeof(struct customer),ios :: cur);
+				f1.seekg(-sizeof(struct customer),ios :: cur);
 				f1.write((char *)&c1,sizeof(struct customer));
 				f1.close();
-				break;
+				return 1;
 			}
 		}
 	}
 	
-	if(a==2)
+else	if(a==2)
 	{
 		struct customer c1,c2,c3;//c2 for karbar c1 for file c3 ham for file ba check kardan tekrari nabodan  new user
 	cout<<"\n enter your last user name :\t";
@@ -136,7 +137,7 @@ void editkarbar()
 			scanf("%s",c1.password);
 			f3.seekg(-1 * sizeof(struct customer),ios :: cur);
 			f3.write((char *)&c1,ios :: cur);
-			break;
+			return 1;
 			}
 		}
 		
@@ -145,6 +146,77 @@ void editkarbar()
 	}
 	
 	
+else	if (a==3)
+	{
+		struct customer c1,c2;//c1 for karbar c2 for file
+		cout<<"enter your username:\t";
+		scanf("%s",c2.username);
+		fstream f4("customers",ios :: binary);
+		while(! f4.eof())
+		{
+			f4.read((char *)&c1,sizeof(struct customer));
+			if(strcmp(c1.username,c2.username)==0)
+			{
+				
+				
+				
+				struct account a,b; //a baraye gereftan az file  va b baraie gereftan az karbar
+            	ifstream f1("accounts", ios :: binary);
+            	if(!f1)
+             	 {
+	                cout<<"error in opening accounts binary file";
+	                exit(1);
+	             }
+            	 while(1)
+              	{
+        		 cout<<"enter your new account :\t";
+          	     cin>>b.balance;
+                 while(!f1.eof())
+	            {
+	        	f1.read((char *)&a,sizeof(struct account));
+	        	if(a.balance == b.balance)
+	 	        {
+	 		
+	 	       	for(int i=0;i<3;i++)
+	 	        	{
+	 	         		cout<<"\n enter your password:\t";
+	 		        	cin>>b.pass;
+	 		        	if(b.pass == a.pass)
+	 		           	{
+	 		             	cout<<"\nyour pass was right\n";
+	 		            	c1.balance=b.balance;
+	 		             	c1.pass=a.pass;
+	 		            	c1.inventory=a.inventory;
+	 		            	f4.seekg(-sizeof(struct customer),ios :: cur);
+                  	
+                            f4.write((char *)&c1,sizeof(struct customer));
+                            f4.close();
+                            f1.close();
+                            cout<<"\nyour driver saved successfully\n";
+                            return 1;
+			            }
+			    	else cout<<"your password was false\n you can try "<<2-i<<"times"<<endl;
+		  	         }
+	 		
+	            }
+                }
+	            char i;
+	            cout <<"your account is false.\n do you wanna try again?(y/n)\n";
+	            cin>>i;
+	             if(i=='n') 
+	               {
+	                  	cout <<"good bye\n";
+	                	f1.close();
+	                	return 0;
+	                }
+	
+            	}
+				
+				
+			}
+		}
+	}	
+return 0;	
 }
 
 int driversazi()
@@ -327,6 +399,8 @@ int signin()
 	scanf("%s",c2.password);
 	cout<<"enter the user name of your moaref (if you do not have just enter 0):\t";
 	scanf("%s",c2.moaref);
+	cout<<"enter your phone number";
+	printf("%s",c2.phone);
 	//f1.seekg(0,ios :: beg);
     ifstream f1("accounts", ios :: binary );
     	if(!f1)
@@ -386,7 +460,7 @@ int signin()
 int main()
 {
 	int a;
-	
+	//a=editkarbar();
 
   
   
