@@ -52,12 +52,12 @@ int main()  //sign in customer success = return 1;
 	}
 	f3.close();*/
 	
-	cout<<"enter your passeord:\t";
+	cout<<"enter your password:\t";
 	scanf("%s",c2.password);
 	cout<<"enter the user name of your moaref (if you do not have just enter 0):\t";
 	scanf("%s",c2.moaref);
 	cout<<"enter your phone number";
-	printf("%s",c2.phone);
+	scanf("%s",c2.phone);
 	//f1.seekg(0,ios :: beg);
     ifstream f1("accounts", ios :: binary );
     	if(!f1)
@@ -86,7 +86,7 @@ int main()  //sign in customer success = return 1;
 	 				c2.balance=a.balance;
 	 				c2.pass=a.pass;
 	 				c2.inventory=a.inventory;
-	 				ofstream f2("customers",ios :: binary | ios :: app);
+	 				ofstream f2("customers",ios :: binary |ios::app);
                    	if(!f2)
                        	{
 	                  	cout<<"error in opening a file for customer\n";
@@ -104,6 +104,11 @@ int main()  //sign in customer success = return 1;
 	 		
 		 }
 	 }
+	 f1.seekg(0,ios :: beg);
+	 cout<<"your account was false do you wanna enter another one?(y/n)\n";
+	 char g;
+	 cin>>g;
+	 if(g== 'n')return 0;
    }
 	
 }
