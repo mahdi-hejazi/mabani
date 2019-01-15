@@ -50,8 +50,59 @@ struct history   //struct history is for history of travels
   int traveltime[2];//time of  travel
   int ranandeaccount;
 };
+struct driver
+{
+	char username[30];
+	char password[30];
+	int vasile;//1 buss 2 train  3 plane
+    int balance;
+	int pass;
 
-void safargiri(struct customer s1)
+};
+
+
+void showtravelsfordriver(driver d1)
+{
+	struct history h1;
+	 ifstream file("safar",ios::binary);
+		         	if (!file) 
+		        	{
+		         		cout<<"error in opening safar binary file";
+		        		exit(0);
+		        	}
+		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of end\n");
+		        	while(!file.eof())
+		        	{
+			    	file.read((char *)&h1,sizeof(struct history));
+			    	if(h1.ranandeaccount==d1.balance)
+			    	{
+			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+					}
+			        }
+			        file.close();
+}
+void showtravelsforleader()
+{
+	struct history h1;
+	 ifstream file("safar",ios::binary);
+		         	if (!file) 
+		        	{
+		         		cout<<"error in opening safar binary file";
+		        		exit(0);
+		        	}
+		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of end\n");
+		        	while(!file.eof())
+		        	{
+			    	file.read((char *)&h1,sizeof(struct history));
+			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+			        }
+			        file.close();
+}
+	               
+
+void safargiri(customer s1)
 {
 	struct history h1;//bara jostojo to fila
 	int a;
@@ -92,12 +143,13 @@ void safargiri(struct customer s1)
 	            	ifstream file("safar",ios::binary);
 	            	if(!file) exit(-1);
 	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
-	            	while(!file.eof())
+	            	while(1)
 	            	{
 	            		file.read((char *)&h1,sizeof(struct history));
+	            		if(file.eof()) break;
 	            		if (h1.bigining==h2.bigining && h1.distination==h1.distination)
 	            		{
-	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 						}
 					}

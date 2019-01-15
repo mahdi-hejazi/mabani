@@ -20,7 +20,7 @@ struct leader
 	char username[30];//="gj12fg";
 	int balance;
 	int pass;
-	int inventory;//mojodi
+
 };
 int main()
 {
@@ -56,7 +56,7 @@ int main()
 	 				cout<<"\nyour pass was right\n";
 	 				l1.balance=a.balance;
 	 				l1.pass=a.pass;
-	 				l1.inventory=a.inventory;
+	 			
 	 				ofstream f2("nessesary",ios :: binary);
                    	if(!f2)
                        	{

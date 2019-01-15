@@ -10,6 +10,12 @@
 #include<conio.h>
 using namespace std;
 
+struct gzs {      //structi baraye daryaft va taghyir gheymat  zarfiyat va sorat
+		int zaribgheymat[3];     //bus  train  plane
+		int zarfiyat[3];   //bus  train  plane
+		int sorat[3];     //bus  train  plane
+	};
+
 struct history   //struct history is for history of travels
 {
   int number;
@@ -17,10 +23,12 @@ struct history   //struct history is for history of travels
   int distination;
   int  price; //gheimat har belit
   int date[3];//1 for year    2 for mounth      3 for day
-  char sarneshinan[50][30];
+  char sarneshinan[500][30];
   char ranande[30];
   int capasity;//zarfiat
-  int time; //time of this travel
+  int time[2]; //time of this travel 1hour  2miniute
+  int traveltime[2];//time of travel
+  int ranandeaccount;
 };
 struct leader //first pass=a      firs user=a
 {
@@ -28,16 +36,16 @@ struct leader //first pass=a      firs user=a
 	char username[30];
 	int balance;
 	int pass;
-	int inventory;//mojodi
+
 };
 struct driver
 {
 	char username[30];
 	char password[30];
-	int vasile;
+	int vasile;//1 buss 2 train  3 plane
     int balance;
 	int pass;
-	int inventory;//mojodi
+
 };
 struct account
 {
@@ -55,7 +63,6 @@ struct customer
   char moaref[30];
   int balance;
   int pass;
-  int inventory;//mojodi  
 };
 struct leader leader1;
 
@@ -123,23 +130,22 @@ driver logindriver()
 {
 			   	  struct driver d1;
 			   	  char user[30],pass[30];
-			   	  	ifstream f1("drivers", ios :: binary);
-			if(!f1)
+			   
+		    while(1)
+			{
+				 ifstream f1("drivers", ios :: binary);
+		    	if(!f1)
 		    	{
 			        cout<<"error in opening file drivers in login";
 			        exit(1);
 		    	}
-		    while(1)
-			{
-				
 				cout<<"\n enter your username: \t";
 		        scanf("%s",user);
-		        f1.seekg(0,ios::beg);
+		        
 		        while(!f1.eof())
 		        {
-		        	f1.read((char *)&d1,sizeof(struct driver));
 		       
-
+		        f1.read((char *)&d1,sizeof(struct driver));
 		        if(strcmp(user,d1.username)==0)
 		        {
 		        	for(int i=0;i<3;i++)
@@ -166,17 +172,17 @@ driver logindriver()
 				}
 				}
 				
-				{
+				
 					cout << " your user name is false. \n do you want to enter another one?(y/n)"<<endl;
 					char s;
 					cin >> s;
-					if(s=='y' || s=='Y') continue;
 					if(s=='n' || s=='N') 
 					{
 						cout<< "good buy";
 						exit(0);
 					}
-				}
+					f1.close();
+				
 			}	
 	       
 					  	
@@ -188,18 +194,18 @@ customer logincustomer()
 {
 			struct customer c1;
 			char username[30],pass[30];
-			ifstream f1("customers", ios :: binary);
-			if(!f1)
+			
+		    while(1)
+			{
+				ifstream f1("customers", ios :: binary);
+		    	if(!f1)
 		    	{
 			        cout<<"error in opening file customer in login";
 			        exit(1);
 		    	}
-		    while(1)
-			{
 				struct customer c1;//c1 bara gereftan az file 
 				cout<<"\n enter your username: \t";
 		        scanf("%s",username);  
-		        f1.seekg(0,ios :: beg);
 		        while(! f1.eof())
 		        {
 		        f1.read((char *)&c1,sizeof(struct customer));
@@ -236,12 +242,12 @@ customer logincustomer()
 					cout << " your user name is false. \n do you want to enter another one?(y/n)"<<endl;
 					char s;
 					cin >> s;
-					if(s=='y' || s=='Y') continue;
 					if(s=='n' || s=='N') 
 					{
 						cout<< "good buy";
 						exit(0);
 					}
+					f1.close();
 				}
 			}	
 }

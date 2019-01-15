@@ -19,7 +19,7 @@ struct driver
 	int vasile;//1bus 2train 3plan
     int balance;
 	int pass;
-	int inventory;//mojodi
+
 };
 
 int main()
@@ -28,7 +28,7 @@ int main()
 	cout<<"\n enter name of driver :\t";
 	scanf("%s",d1.username);
 	
-		ifstream f3("drivers",ios :: binary);
+		/*ifstream f3("drivers",ios :: binary);
 	
 		if(!f3)
 	 {
@@ -47,7 +47,7 @@ int main()
 		}
 		
 	}
-	f3.close();
+	f3.close();*/
 	
 	
 	cout<<"\n enter pasword of driver :\t";
@@ -55,16 +55,17 @@ int main()
 	cout<<"\n enter the number of your vaicle?(1:bus 2:train 3:plane)\n";
 	cin>>d1.vasile;
 	struct account a,b; //a baraye gereftan az file  va b baraie gereftan az karbar
-	ifstream f1("accounts", ios :: binary);
+	
+	 while(1)
+	{
+		 cout<<"enter your account :\t";
+	     cin>>b.balance;
+	     ifstream f1("accounts", ios :: binary);
 	if(!f1)
 	 {
 	   cout<<"error in opening accounts binary file";
 	   exit(1);
 	 }
-	 while(1)
-	{
-		 cout<<"enter your account :\t";
-	     cin>>b.balance;
          while(!f1.eof())
 	 {
 	 	f1.read((char *)&a,sizeof(struct account));
@@ -80,7 +81,7 @@ int main()
 	 				cout<<"\nyour pass was right\n";
 	 				d1.balance=b.balance;
 	 				d1.pass=a.pass;
-	 				d1.inventory=a.inventory;
+	 				
 	 				ofstream f2("drivers",ios :: binary | ios :: app);
                    	if(!f2)
                        	{
@@ -108,7 +109,7 @@ int main()
 	 	f1.close();
 	 	return 0;
 	 }
-	
+	f1.close();
 	}
 	
 

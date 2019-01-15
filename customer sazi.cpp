@@ -22,7 +22,7 @@ struct customer
   char moaref[30];
   int balance;
   int pass;
-  int inventory;//mojodi  
+ 
 };
 
 int main()  //sign in customer success = return 1;
@@ -85,7 +85,7 @@ int main()  //sign in customer success = return 1;
 	 				cout<<"\nyour pass was right\n";
 	 				c2.balance=a.balance;
 	 				c2.pass=a.pass;
-	 				c2.inventory=a.inventory;
+	 				
 	 				ofstream f2("customers",ios :: binary |ios::app);
                    	if(!f2)
                        	{
