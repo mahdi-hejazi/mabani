@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include<string.h>
+#include<conio.h>
 #include "login.h" //header ke ma tarif kardim shamel tabeie login() baraie logi shodan
     //stuct haie ma dar header login.h tarif shodand
 using namespace std;
@@ -31,7 +32,7 @@ struct leader //first pass=a      firs user=a
 	char username[30];
 	int balance;
 	int pass;
-	int inventory;//mojodi
+	
 };
 struct driver
 {
@@ -40,7 +41,7 @@ struct driver
 	int vasile;//1bus 2train   3plane
     int balance;
 	int pass;
-	int inventory;//mojodi
+	
 };
 struct account
 {
@@ -58,14 +59,21 @@ struct customer
   char moaref[30];
   int balance;
   int pass;
-  int inventory;//mojodi  
+ 
 };*/
+
+struct leader l;
+struct customer c;
+struct driver d;
+
 int editkarbar()
 {
+	cout << string(50, '\n');
 	struct customer c1,c2;//c1 for file
 	ifstream f1("customers",ios::binary);
     while(1)
     {
+    	cout << string(50, '\n');
         printf("enter your old user name:\t");
 	    scanf("%s",c2.username);
 	    for(int i=0;!f1.eof();i++) //i baraie shomaresh ke chandomin stuct file baraie karbar ast
@@ -143,7 +151,7 @@ int editkarbar()
 								    	cin>>c1.pass;
 								    	if(c1.pass==a1.pass) 
 								    	{
-								    		c1.inventory==a1.inventory;
+								    		
 								    		f4.close();
 								    		goto l1;//dard nachary gozashtam mire ghable break chand khat paiin tar
 										}
@@ -180,6 +188,7 @@ int editkarbar()
 }
 int driversazi()
 {
+    cout << string(50, '\n');  
 	struct driver d1,d2;//d1 for karbar   d2 for file
 	cout<<"\n enter username of your driver :\t";
 	scanf("%s",d1.username);
@@ -236,7 +245,6 @@ int driversazi()
 	 				cout<<"\nyour pass was right\n";
 	 				d1.balance=b.balance;
 	 				d1.pass=a.pass;
-	 				d1.inventory=a.inventory;
 	 				ofstream f2("drivers",ios :: binary | ios :: app);
                    	if(!f2)
                        	{
@@ -271,64 +279,94 @@ int driversazi()
 	
 	
 }
-int editleader()//for editing boss
+int editleader(struct leader l1)//for editing boss
 {
-	struct leader l1;
-	cout<<"\nyour new user name:\t";
-	scanf("%s",l1.username);
-	cout<<"\nyour new password:\t";
-	scanf("%s",l1.password);
-    
-    struct account a,b;//a baraie file va b baraie karbar va moghaiese in do
-    ifstream f1("accounts", ios :: binary);
-	if(! f1)
-	 {
-	   cout<<"error in opening accounts binary file";
-	   exit(1);
-	 }
-	 while(1)
+	while(1)
 	{
-		 cout<<"enter your account :\t";
-	     cin>>b.balance;
-         while(!f1.eof())
-	 {
-	 	f1.read((char *)&a,sizeof(struct account));
-	 	if(a.balance == b.balance)
-	 	 {
-	 		
-	 		for(int i=0;i<3;i++)
-	 		{
-	 			cout<<"\n enter your password:\t";
-	 			cin>>b.pass;
-	 			if(b.pass == a.pass)
-	 			{
-	 				cout<<"\nyour pass was right\n";
-	 				l1.balance=a.balance;
-	 				l1.pass=a.pass;
-	 				l1.inventory=a.inventory;
-	 				ofstream f2("nessesary",ios :: binary);
-                   	if(!f2)
-                       	{
-	                  	cout<<"error in opening a file for leader with the name nessesary\n";
-	                	exit(1);
-                       	}
-                  	
-                       	f2.write((char *)&l1,sizeof(struct leader));
-                       	f2.close();
-                       	f1.close();
-                       	cout<<"\nleader saved successfully\n";
-                       	return 1;
-				}
-				else cout<<"your password was false\n you can try "<<2-i<<"times"<<endl;
-			 }
-	 		
-		 }
+		cout << string(50, '\n');
+		cout <<"do you wanna edit which of these information?(enter the number)\n1:username\t2:password\t3:account number";
+		int a;
+		cin>>a;
+		switch(a)
+		{
+			case 1:{
+				cout<<"\nyour new user name:\t";
+             	scanf("%s",l1.username);
+				break;
+			}
+			case 2:{
+				cout<<"\nyour new password:\t";
+            	scanf("%s",l1.password);
+				break;
+			}
+			case 3:{
+				struct account a,b;//a baraie file va b baraie karbar va moghaiese in do
+                ifstream f1("accounts", ios :: binary);
+            	if(! f1)
+           	    {
+	               cout<<"error in opening accounts binary file";
+	               exit(1);
+	            }
+	            while(1)
+	            {
+	            	cout<<"enter your account :\t";
+	                cin>>b.balance;
+	                f1.seekg(0,ios::beg);
+                    while(!f1.eof())
+	                {
+	 	               f1.read((char *)&a,sizeof(struct account));
+	 	               if(a.balance == b.balance)
+	 	               {
+                          for(int i=0;i<3;i++)
+	 		              {
+	 		            	cout<<"\n enter your password:\t";
+	 			            cin>>b.pass;
+	 		            	if(b.pass == a.pass)
+	 		               	{
+	 			            	cout<<"\nyour pass was right\n";
+	 				            l1.balance=a.balance;
+	 			             	l1.pass=a.pass;
+	 			             
+							}
+				            else 
+				            {
+				            	if(i<3)
+				            	{
+				            		cout<<"your pass was rang!you have"<<2-i<<"times.\n";	
+								}
+							}
+			               }
+                        }
+	                }
+				    cout<<"do you wanna countinue?(y/n)";
+				    char ch;
+				    if (ch=='n'|| ch=='N') break;
+				    
+	    	    }
+	    	    f1.close();
+				break;
+			}
+	    }
+		ofstream f2("nessesary",ios :: binary);
+        if(!f2)
+       	{
+	        cout<<"error in opening a file for leader with the name nessesary\n";
+	        exit(1);
+        }
+        f2.write((char *)&l1,sizeof(struct leader));
+       	f2.close();
+        cout<<"\nleader saved successfully\n";
+        cout<<"do you wanna change another thing?(y/n)";
+        char c;
+        cin>>c;
+        if(c=='n' || c=='N') return 1;
 	}
-   }
 }
+ 
 
 int signin()  
 {
+	cout << string(50, '\n');
 	struct customer c1,c2;//c1 baraie file va c2 baraie karbar
 	cout<<"\nenter your name:\t";
 	scanf("%s",c2.name);
@@ -391,7 +429,7 @@ int signin()
 	 				cout<<"\nyour pass was right\n";
 	 				c2.balance=a.balance;
 	 				c2.pass=a.pass;
-	 				c2.inventory=a.inventory;
+	 			
 	 				ofstream f2("customers",ios :: binary | ios :: app);
                    	if(!f2)
                        	{
@@ -422,10 +460,29 @@ int signin()
 
 int main()
 {
+	int position;
 	int a;
-	//a=editkarbar();
-   //a= editkarbar();
-    //a=signin();
+	cout<<"enter the number of your position and press enter:\n 1 leder \t 2 driver \t 3 customer \t 4 no psition \n";
+	cin>>position;
+	switch(position)
+	{
+		case 1:{
+			l=loginleader();
+			break;
+		}
+		case 2:{
+			d=logindriver();
+			break;
+		}
+		case 3:{
+			c=logincustomer();
+			break;
+		}
+		case 4:{
+			
+			break;
+		}
+	}
   
   
   
