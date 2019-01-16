@@ -66,10 +66,10 @@ int main()
 	struct driver d1;
 	ifstream f1("drivers",ios::binary);
 	if(!f1)return 125;
-	while(!f1.eof())
+	while(1)
 	{
 		f1.read((char *)&d1,sizeof(struct driver));
-		
-		printf("%s\t%s\t%d\t%d\t%d\n",d1.username,d1.password,d1.vasile,d1.balance,d1.pass);
+		if(f1.eof()) break;
+		printf("%s\t%s\t%d\t%d\t%d\n\n",d1.username,d1.password,d1.vasile,d1.balance,d1.pass);
 	}
 }

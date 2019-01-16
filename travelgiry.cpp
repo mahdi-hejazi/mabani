@@ -5,6 +5,7 @@
 #include<string.h>
 #include<string>
 #include<conio.h>
+#include<windows.h>
 using namespace std;
 
 struct customer
@@ -36,20 +37,20 @@ struct account
 };
 
 struct history   //struct history is for history of travels
-{
-  int number;
-  int bigining;
-  int distination;
-  int  price; //gheimat har belit
-  int date[3];//1 for year    2 for mounth      3 for day
-  char sarneshinan[500][30];
-  char ranande[30];
-  int capasity;//zarfiat
-  int time[2]; //time of this travel 1hour  2miniute
-  int vasile;
-  int traveltime[2];//time of  travel
-  int ranandeaccount;
-};
+	{
+		int number;
+		int bigining;
+		int distination;
+		int  price; //gheimat har belit
+		int date[3];//1 for year    2 for mounth      3 for day
+		char sarneshinan[500][30];
+		char ranande[30];
+		int capasity;//zarfiat
+		int time[2];//1.saat 2.daghighe 
+		int traveltime[2]; // 1.saat tool safar 2.daghighe tool safar 
+		int ranandeaccount;
+		int vasile;//1bus 2train 3palne
+	};
 struct driver
 {
 	char username[30];
@@ -70,14 +71,15 @@ void showtravelsfordriver(driver d1)
 		         		cout<<"error in opening safar binary file";
 		        		exit(0);
 		        	}
-		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of end\n");
-		        	while(!file.eof())
+		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
+		        	while(1)
 		        	{
 			    	file.read((char *)&h1,sizeof(struct history));
+			    	if(file.eof()) break;
 			    	if(h1.ranandeaccount==d1.balance)
 			    	{
-			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
-			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	cout<<"\t"<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 					}
 			        }
 			        file.close();
@@ -108,6 +110,7 @@ void safargiri(customer s1)
 	int a;
 	while(1)
 	{
+		system("cls");
 		cout<<"\n enter the number:\n0:exit \t 1:list of whole travels \t 2:list of travels with bigining and distination \t 3:take travel\n";
 	    cin>>a;
      	switch(a)
@@ -122,38 +125,49 @@ void safargiri(customer s1)
 		         		cout<<"error in opening safar binary file";
 		        		exit(0);
 		        	}
-		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of end\n");
-		        	while(!file.eof())
+		        	system("cls");
+		        	printf("number\tvehicle\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
+		        	cout<<"-------------------------------------------------------------------------------------------------";
+		        	while(1)
 		        	{
 			    	file.read((char *)&h1,sizeof(struct history));
-			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
-			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+			    	if(file.eof()) break;
+			    	printf("\n%d\t%d\t %d\t %d\t  %d  \t    %d  ",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			        }
 			        file.close();
-		    	break;
+			        cout<<"\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\nif you wanna exit press 0";
+		            int bo;
+		            cin>>bo;
+		            if(bo==0) break;
 	       	}
 	       	case 2:{
 	       		struct history h2;
 	       		while(1)
 	            {
-	            	cout<<"enter your biginig city:\t";
+	            	system("cls");
+	            	cout<<"\n***********************************************************************\nenter your biginig city:\t";
 	            	cin>>h2.bigining;
 	            	cout<<"\nenter your distination city:\t";
 	            	cin>>h2.distination;
 	            	ifstream file("safar",ios::binary);
 	            	if(!file) exit(-1);
-	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
+	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
 	            	while(1)
 	            	{
 	            		file.read((char *)&h1,sizeof(struct history));
 	            		if(file.eof()) break;
-	            		if (h1.bigining==h2.bigining && h1.distination==h1.distination)
+	            		if (h1.bigining==h2.bigining && h1.distination==h2.distination)
 	            		{
 	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 						}
 					}
 					file.eof();
+					cout<<"\n////////////////////////////////////////////////////////////////////////////////\ndo you wanna enter another travel?(y/n)";
+					char ch;
+					cin>>ch;
+					if (ch=='n') break;
 	            	
 				}
 	       		
@@ -161,7 +175,8 @@ void safargiri(customer s1)
 			   }
 			case 3:{
 				int number;
-				cout<<"\nenter the number of your travel.(if you do not know enter 0)\n";
+				system("cls");
+				cout<<"***********************************************************\nenter the number of your travel.(if you do not know enter 0)\n";
 				cin>>number;
 				if (number==0)break;
 				else {

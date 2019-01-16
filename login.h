@@ -2,6 +2,7 @@
 #define MY-HEADER-H-INCLUDED
 
 #include<stdio.h>
+#include<windows.h>
 #include<stdlib.h>
 #include <iostream>
 #include <fstream>
@@ -29,6 +30,7 @@ struct history   //struct history is for history of travels
   int time[2]; //time of this travel 1hour  2miniute
   int traveltime[2];//time of travel
   int ranandeaccount;
+  int vasile;//1bus 2train 3palne
 };
 struct leader //first pass=a      firs user=a
 {
@@ -79,7 +81,7 @@ leader loginleader()
 		    	}
 		    while(1)
 			{
-				
+				system("cls");
 				cout<<"\n enter your username: \t";
 		        scanf("%s",user);
 		       
@@ -139,6 +141,7 @@ driver logindriver()
 			        cout<<"error in opening file drivers in login";
 			        exit(1);
 		    	}
+		    	system("cls");
 				cout<<"\n enter your username: \t";
 		        scanf("%s",user);
 		        
@@ -203,7 +206,8 @@ customer logincustomer()
 			        cout<<"error in opening file customer in login";
 			        exit(1);
 		    	}
-				struct customer c1;//c1 bara gereftan az file 
+				struct customer c1;//c1 bara gereftan az file
+				system("cls"); 
 				cout<<"\n enter your username: \t";
 		        scanf("%s",username);  
 		        while(! f1.eof())

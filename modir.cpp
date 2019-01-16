@@ -24,7 +24,8 @@ int main()
     cout<<"3.View customer information\n";
     cout<<"4.see travels\n";
     cout<<"5.Driver registration\n";
-    cout<<"6.Exit the admin section";
+    cout<<"6.edit your accunt"
+    cout<<"7.Exit the admin section";
 	cout <<"\n-------------------------------------------------------- \n";
 	cout<<"Enter number:\t";
 	cin>>a;
@@ -56,59 +57,57 @@ cout<<"What do you want to do?\n";
     cout<<"11.Exit the admin section";
 	cout <<"\n-------------------------------------------------------- \n";
 	cout<<"Enter number:\t";
-	int a;
-	cin>>a;
+	int n;
+	cin>>n;
 	cout <<"-------------------------------------------------------- \n";
-	if(a==1)
+	if(n==1)
 	{
 		cout<<"Enter new coefficient of bus\n";
 	    cin>>s.zaribgheymat[0];
     }
-	if(a==2)
+	if(n==2)
 	{
 		cout<<"Enter new coefficient of train\n";
       	cin>>s.zaribgheymat[1];
     }
-	if(a==3)
+	if(n==3)
 	{
 		cout<<"Enter new coefficient of airplane\n";
 	    cin>>s.zaribgheymat[2];
     }
-	if(a==4)
+	if(n==4)
 	{
     	cout<<"Enter new capacity of bus\n";
 	    cin>>s.zarfiyat[0];
     }
-	if(a==5)
+	if(n==5)
 	{
 		cout<<"Enter new capacity of train\n";
 	    cin>>s.zarfiyat[1];
     }
-	if(a==6)
+	if(n==6)
 	{
      	cout<<"Enter new capacity of airplane\n";
 	    cin>>s.zarfiyat[2];
     }
-	if(a==7)
+	if(n==7)
 	{
 	cout<<"Enter new speed of bus\n";
 	cin>>s.sorat[0];
     }
-	if(a==8)
+	if(n==8)
     {
     cout<<"Enter new speed of train\n";
 	cin>>s.sorat[1];
     }
-	if(a==9)
+	if(n==9)
 	{
 	cout<<"Enter new speed of airplane\n";
 	cin>>s.sorat[2];
     }
-	if(a==10)
-	break;
-	if(a==11)
-	return 0;
-	ofstream f2("ghematzarfiyatsorat",ios::binary);
+	if(n==10)   
+    {
+    	ofstream f2("ghematzarfiyatsorat",ios::binary);
 	if (!f1)
 	{
 		cout<<"Eror (can not open the file)";
@@ -116,7 +115,20 @@ cout<<"What do you want to do?\n";
 	}
 	f2.write((char*)&s,sizeof(struct gzs));
 	f2.close();
-}
+	break;
+    }
+	if(n==11)
+	{
+		ofstream f2("ghematzarfiyatsorat",ios::binary);
+	if (!f1)
+	{
+		cout<<"Eror (can not open the file)";
+		exit;
+	}
+	f2.write((char*)&s,sizeof(struct gzs));
+	f2.close();
+	return 0;
+}}
 }
 }
 }

@@ -9,4 +9,5 @@ int main()
 		f1.read((char *)&c1,sizeof(customer));
 		printf("%s\t%s\t%s\t%d\t%d\n",c1.username,c1.phone,c1.password,c1.balance,c1.pass);
 	}
+	f1.close();
 }

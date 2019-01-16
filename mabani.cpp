@@ -4,6 +4,7 @@
 #include <fstream>
 #include<string.h>
 #include<math.h>
+#include<windows.h>
 #include<conio.h>
 #include "login.h" //header ke ma tarif kardim shamel tabeie login() baraie logi shodan
     //stuct haie ma dar header login.h tarif shodand
@@ -15,61 +16,13 @@ nessesary baraie atelaat digar mesle leader dar khat aval
 travel-history baraie tarikhche safar ha
 travels baraie safar haie alan*/
 
-/*struct history   //struct history is for history of travels
-{
-  int number;
-  int bigining;
-  int distination;
-  int  price; //gheimat har belit
-  int date[3];//1 for year    2 for mounth      3 for day
-  char sarneshinan[500][30];
-  char ranande[30];
-  int capasity;//zarfiat
-  int time; //time of this travel
-};
-struct leader //first pass=a      firs user=a
-{
-	char password[30];
-	char username[30];
-	int balance;
-	int pass;
-	
-};
-struct driver
-{
-	char username[30];
-	char password[30];
-	int vasile;//1bus 2train   3plane
-    int balance;
-	int pass;
-	
-};
-struct account
-{
-	int balance;
-	int pass;
-	int inventory;//mojodi
-};
-struct customer
-{
-  char username[30];
-  char name[30];
-  char family[30];
-  char password[30];
-  char phone[15];
-  char moaref[30];
-  int balance;
-  int pass;
- 
-};*/
 
-struct leader l;
-struct customer c;
-struct driver d;
+
+
 
 void tayinsafarranande(struct driver d1)
 {
-	
+	system("cls");
 	int o;
 	o=d1.vasile;
 	struct gzs dd;//khandan az file geymat zarfiyat sorat
@@ -146,20 +99,21 @@ void tayinsafarranande(struct driver d1)
 	if (o == 1)
 	{
 		safar.traveltime[0] = distance / dd.sorat[0];
-		safar.traveltime[1] = (distance%dd.sorat[0]) * 60;
+		safar.traveltime[1] = (distance%dd.sorat[0]);
 	}
 	if (o == 2)
 	{
 		safar.traveltime[0] = distance / dd.sorat[0];
-		safar.traveltime[1] = (distance % dd.sorat[0]) * 60;
+		safar.traveltime[1] = (distance % dd.sorat[0]);
 	}
 	if (o == 3)
 	{
 		safar.traveltime[0] = distance / dd.sorat[0];
-		safar.traveltime[1] = (distance % dd.sorat[0]) * 60;
+		safar.traveltime[1] = (distance % dd.sorat[0]);
 	}
 	strcpy(safar.ranande,d1.username);
 	safar.ranandeaccount=d1.balance;
+	safar.vasile=d1.vasile;
 	ofstream f3("safar", ios::binary | ios::app);
 	if (!f3)
 	{
@@ -171,17 +125,18 @@ void tayinsafarranande(struct driver d1)
 	return ;
 }
 
-int editkarbar()
+int editkarbar()////niaz be viraiesh dare
 {
-	cout << string(50, '\n');
+	system("cls");
 	struct customer c1,c2;//c1 for file
 	ifstream f1("customers",ios::binary);
     while(1)
     {
+    	int i;
     	cout << string(50, '\n');
         printf("enter your old user name:\t");
 	    scanf("%s",c2.username);
-	    for(int i=0;!f1.eof();i++) //i baraie shomaresh ke chandomin stuct file baraie karbar ast
+	    for( i=0;!f1.eof();i++) //i baraie shomaresh ke chandomin stuct file baraie karbar ast
 	    {
 	    	f1.read((char *)&c1,sizeof(struct customer));
 	    	if(strcmp(c1.username,c2.username)==0)
@@ -189,6 +144,7 @@ int editkarbar()
 	    		f1.close();
 	    		while(1)
 	    		{
+	    		system("cls");
 				cout<<"\nwhich information you wanna change? enter the number\n";
 	    		cout<<"1.name  2.family  3.username  4.password  5.phone_number  6.balance\n";
 	    		int b;
@@ -291,9 +247,10 @@ int editkarbar()
 	}
 	
 }
+
 int driversazi()
 {
-    cout << string(50, '\n');  
+    system("cls");
 	struct driver d1,d2;//d1 for karbar   d2 for file
 	cout<<"\n enter username of your driver :\t";
 	scanf("%s",d1.username);
@@ -384,11 +341,12 @@ int driversazi()
 	
 	
 }
+
 int editleader(struct leader l1)//for editing boss
 {
 	while(1)
 	{
-		cout << string(50, '\n');
+		system("cls");
 		cout <<"do you wanna edit which of these information?(enter the number)\n1:username\t2:password\t3:account number";
 		int a;
 		cin>>a;
@@ -460,18 +418,17 @@ int editleader(struct leader l1)//for editing boss
         }
         f2.write((char *)&l1,sizeof(struct leader));
        	f2.close();
-        cout<<"\nleader saved successfully\n";
+        cout<<"\nleader edit successfully\n";
         cout<<"do you wanna change another thing?(y/n)";
         char c;
         cin>>c;
         if(c=='n' || c=='N') return 1;
 	}
 }
- 
 
-int signin()  
+int signin()  //sabt nam karbar
 {
-	cout << string(50, '\n');
+	system("cls");
 	struct customer c1,c2;//c1 baraie file va c2 baraie karbar
 	cout<<"\nenter your name:\t";
 	scanf("%s",c2.name);
@@ -503,7 +460,7 @@ int signin()
 	
 	cout<<"enter your password:\t";
 	scanf("%s",c2.password);
-	cout<<"enter the user name of your moaref (if you do not have just enter 0):\t";
+	cout<<"enter the username of your moaref (if you do not have just enter 0):\t";
 	scanf("%s",c2.moaref);
 	cout<<"enter your phone number:\t";
 	scanf("%s",c2.phone);
@@ -517,7 +474,7 @@ int signin()
     struct account a,b;//b az carbar a az file
 	 while(1)
 	{
-		 cout<<"enter your account :\t";
+		 cout<<"enter your account number :\t";
 	     cin>>b.balance;
          while(!f1.eof())
 	 {
@@ -555,7 +512,7 @@ int signin()
 	 		
 		 }
 	 }
-	 cout<<"\n if you do not want to continue enter n else enter another character";
+	 cout<<"\n if you do not want to continue enter 'n' else enter another character";
 	 char l;
 	 cin>>l;
 	 if(l=='n') return 0;
@@ -566,11 +523,11 @@ int signin()
 int main()
 {
 	int position;
-	int b;
-	//b=driversazi();
-	int a;
 	cout<<"enter the number of your position and press enter:\n 1 leder \t 2 driver \t 3 customer \t 4 no psition \n";
 	cin>>position;
+	struct leader l;
+    struct customer c;
+    struct driver d;  
 	switch(position)
 	{
 		case 1:{
