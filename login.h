@@ -31,6 +31,7 @@ struct history   //struct history is for history of travels
   int traveltime[2];//time of travel
   int ranandeaccount;
   int vasile;//1bus 2train 3palne
+  int account[500];//account sarneshinan
 };
 struct leader //first pass=a      firs user=a
 {
@@ -42,6 +43,9 @@ struct leader //first pass=a      firs user=a
 };
 struct driver
 {
+	char name[30];
+	char family[30];
+	char phone[30];
 	char username[30];
 	char password[30];
 	int vasile;//1 buss 2 train  3 plane

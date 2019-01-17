@@ -93,190 +93,31 @@ void showtravelsforleader()
 		         		cout<<"error in opening safar binary file";
 		        		exit(0);
 		        	}
-		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of end\n");
-		        	while(!file.eof())
-		        	{
-			    	file.read((char *)&h1,sizeof(struct history));
-			    	printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
-			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
-			        }
-			        file.close();
-}
-	               
-
-void safargiri(customer s1)
-{
-	struct history h1;//bara jostojo to fila
-	int a;
-	while(1)
-	{
-		system("cls");
-		cout<<"\n enter the number:\n0:exit \t 1:list of whole travels \t 2:list of travels with bigining and distination \t 3:take travel\n";
-	    cin>>a;
-     	switch(a)
-    	{
-    		case 0:{return;
-				break;
-			}
-	    	case 1:{
-		        	ifstream file("safar",ios::binary);
-		         	if (!file) 
-		        	{
-		         		cout<<"error in opening safar binary file";
-		        		exit(0);
-		        	}
-		        	system("cls");
-		        	printf("number\tvehicle\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
-		        	cout<<"-------------------------------------------------------------------------------------------------";
+		        	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
+		        	cout<<"---------------------------------------------------------------------------------------------------";
 		        	while(1)
 		        	{
 			    	file.read((char *)&h1,sizeof(struct history));
 			    	if(file.eof()) break;
 			    	printf("\n%d\t%d\t %d\t %d\t  %d  \t    %d  ",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+			    	printf("sarneshinan:\n");
+			    	
+			    	for (int w=0;h1.sarneshinan[w][0]!=NULL;w++)
+			    	{
+			    		printf("%d:%s\t",&w,h1.sarneshinan[w]);
+			    		if(w%6==0) printf("\n");
+					}
 			        }
 			        file.close();
-			        cout<<"\n\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\nif you wanna exit press 0";
-		            int bo;
-		            cin>>bo;
-		            if(bo==0) break;
-	       	}
-	       	case 2:{
-	       		struct history h2;
-	       		while(1)
-	            {
-	            	system("cls");
-	            	cout<<"\n***********************************************************************\nenter your biginig city:\t";
-	            	cin>>h2.bigining;
-	            	cout<<"\nenter your distination city:\t";
-	            	cin>>h2.distination;
-	            	ifstream file("safar",ios::binary);
-	            	if(!file) exit(-1);
-	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
-	            	while(1)
-	            	{
-	            		file.read((char *)&h1,sizeof(struct history));
-	            		if(file.eof()) break;
-	            		if (h1.bigining==h2.bigining && h1.distination==h2.distination)
-	            		{
-	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
-			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
-						}
-					}
-					file.eof();
-					cout<<"\n////////////////////////////////////////////////////////////////////////////////\ndo you wanna enter another travel?(y/n)";
-					char ch;
-					cin>>ch;
-					if (ch=='n') break;
-	            	
-				}
-	       		
-				break;
-			   }
-			case 3:{
-				int number;
-				system("cls");
-				cout<<"***********************************************************\nenter the number of your travel.(if you do not know enter 0)\n";
-				cin>>number;
-				if (number==0)break;
-				else {
-					ifstream f1("safar",ios::binary);
-					if(!f1) {
-						cout<<"error in opening safar";
-						exit(0);
-					}
-					int makan=-1;//makan safar dar file
-					while(!f1.eof())
-					{
-						makan++;
-						f1.read((char*)&h1,sizeof(struct history));
-						if(h1.number==number)
-						{
-							if(h1.capasity==0)
-			    	        {
-			    	        	cout<<"the vehicle is full";
-							}
-			    	        
-							printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
-							printf("\n%d\t%d\t%d\t%d\t%d\t%d",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
-			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
-			    	        cout<<"\nare you sure you wanna take this?(y/n)/t";
-			    	        char c;
-			    	        cin>>c;
-			    	        if(c=='n')break;
-			    	        f1.close();
-			    	        ofstream f2("safar",ios::binary);
-			    	        if(!f2) exit(-1);
-			    	        f2.seekp(makan*sizeof(struct history),ios::beg);
-			    	        h1.capasity--;
-			    	        for(int i=0;;i++)
-			    	        {
-			    	        	if(h1.sarneshinan[i][0]==NULL)
-			    	        	strcpy(h1.sarneshinan[i],s1.username);
-							}
-							f2.write((char*)&h1,sizeof(struct history));
-							f2.close();
-							struct account acc;//////////
-							fstream f3("account",ios::binary);
-							if(!f3)
-							{
-							cout <<"error in opening account binary file in travel sazi";
-							exit(-1);
-							}
-							while(!f3.eof())
-							{
-								f3.read((char *)&acc,sizeof(struct account));
-								if(acc.balance==s1.balance)
-								{
-									acc.inventory-=h1.price;
-									f3.seekp(f3.tellg()-sizeof(struct account),ios::beg);
-									f3.write((char*)&acc,sizeof(struct account));
-									
-								}
-							}
-							f3.seekg(0,ios::beg);
-							while(!f3.eof())
-							{
-								f3.read((char *)&acc,sizeof(struct account));
-								if(acc.balance==h1.ranandeaccount)
-								{
-									acc.inventory+=90*h1.price/100;
-									f3.seekp(f3.tellg()-sizeof(struct account),ios::beg);
-									f3.write((char*)&acc,sizeof(struct account));		
-								}
-							}
-							struct leader l1;
-							ifstream f4("nessesary",ios::binary);
-							if(!f4)
-							cout<<"error in nessesary file in travel giry"<<endl;
-							f4.read((char*)&l1,sizeof(struct leader));
-							
-							while(!f3.eof())
-							{
-								f3.read((char *)&acc,sizeof(struct account));
-								if(acc.balance==l1.balance)
-								{
-									acc.inventory+=10*h1.price/100;
-									f3.seekp(f3.tellg()-sizeof(struct account),ios::beg);
-									f3.write((char*)&acc,sizeof(struct account));		
-								}
-							}
-							f4.close();
-							f3.close();
-							cout<<"you take the travel successfully\n";
-							
-						}
-					}
-				}
-				break;
-			}
-	         	
-	    }
-	}
 }
+	               
+
 
 int main()
 {
+	
+	showtravelsforleader();
 	struct customer c1;
-	safargiri(c1);
+	
 }

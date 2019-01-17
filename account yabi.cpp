@@ -16,44 +16,37 @@ struct account
 int main()
 {
 	struct account a,b; //a baraye gereftan az file  va b baraie gereftan az karbar
-	ifstream f1("accounts", ios :: binary);
+	
+	 while(1)
+	{
+		ifstream f1("accounts", ios :: binary);
 	if(!f1)
 	 {
 	   cout<<"error in opening accounts binary file";
-	   exit(1);
+	   exit(78);
 	 }
-	 while(1)
-	{
-		 cout<<"enter your account :\t";
+		 cout<<"\nenter your account :\t";
 	     cin>>b.balance;
-         while(!f1.eof())
+         while(f1.read((char *)&a,sizeof(struct account))!=NULL)
 	 {
-	 	f1.read((char *)&a,sizeof(struct account));
+	 	
 	 	if(a.balance == b.balance)
 	 	 {
 	 		
-	 		for(int i=0;i<3;i++)
-	 		{
-	 			cout<<"\n enter your password:\t";
-	 			cin>>b.pass;
-	 			if(b.pass == a.pass)
-	 			{
-	 				cout<<"\nyour pass was right\nyour inventory is :\t"<<a.inventory;
-	 				return 1;//1 bargardine yani account mojode
-				}
-				else cout<<"your password was false\n you can try "<<2-i<<"times"<<endl;
-			 }
+	 		cout<<"\nyour inventory is :\t"<<a.inventory<<"\tpass:"<<a.pass;
+	 		break;
 	 		
 		 }
 	 }
 	 char i;
-	 cout <<"your account is false.\n do you wanna try again?(y/n)\n";
+	 cout <<"\ndo you wanna try again?(y/n)\n";
 	 cin>>i;
 	 if(i=='n') 
 	 {
 	 	cout <<"good bye\n";
 	 	return 0;
 	 }
-	 
+	 f1.close();
 	}
+	
 }

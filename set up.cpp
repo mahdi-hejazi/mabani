@@ -26,10 +26,10 @@ struct account
 	int balance;
 	int pass;
 	int inventory;//mojodi
-};
+}a;
 int main()
 {
-	ofstream f1("safar", ios::binary);
+	/*ofstream f1("safar", ios::binary);
 	f1.close();//file safaro misaze
 	ofstream f2("drivers",ios::binary);
 	f2.close();
@@ -37,7 +37,7 @@ int main()
 	f3.close();
 	ofstream f4("nessesary",ios::binary);
 	f4.close();	
-	struct account a; //a baraie greftan az text file va rikhtan toie binary file
+	struct account a; //a baraie greftan az text file va rikhtan toie binary file*/
 	ifstream f5("accounts.txt");
 	if(!f5)
 	 {
