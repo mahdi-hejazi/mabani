@@ -29,7 +29,7 @@ struct account
 }a;
 int main()
 {
-	/*ofstream f1("safar", ios::binary);
+	ofstream f1("safar", ios::binary);
 	f1.close();//file safaro misaze
 	ofstream f2("drivers",ios::binary);
 	f2.close();

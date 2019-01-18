@@ -17,9 +17,18 @@ struct gzs {      //structi baraye daryaft va taghyir gheymat  zarfiyat va sorat
 		int sorat[3];     //bus  train  plane
 	};
 
+struct tarakonesh
+{
+	int account;
+	int pass;
+	int andaze;
+	int date[3];
+	int time[2];
+};
+
 struct history   //struct history is for history of travels
 {
-  int number;
+  int number;//0laghv shode              -1anjam shode
   int bigining;
   int distination;
   int  price; //gheimat har belit

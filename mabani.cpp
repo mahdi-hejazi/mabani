@@ -1,3 +1,4 @@
+#include "login.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include <iostream>
@@ -7,7 +8,8 @@
 #include<windows.h>
 #include<iomanip>
 #include<conio.h>
-#include "login.h" //header ke ma tarif kardim shamel tabeie login() baraie logi shodan
+#include<ctime>
+ //header ke ma tarif kardim shamel tabeie login() baraie logi shodan
     //stuct haie ma dar header login.h tarif shodand
 using namespace std;
 /*file haie ma shamel : accounts baraie account ha
@@ -16,6 +18,261 @@ drivers baraie ranande ha
 nessesary baraie atelaat digar mesle leader dar khat aval
 travel-history baraie tarikhche safar ha
 travels baraie safar haie alan*/
+int driversazi();
+int editleader(struct leader);
+void showtravelsforleader();
+void showtrakonesh(int account);
+void safarrafte();
+void canceltravelkoli(history);
+int editaccount(int  ,int );
+void cancelblit(int ,customer);
+void cutomerpannel(struct customer);
+void safargiricustomer(customer);
+void safargiriadi();
+void tayinsafarranande(struct driver);
+void showtravelsfordriver(driver );
+int editdriver(driver);
+int editkarbar(customer);////niaz be viraiesh dare
+int modirpanel();
+int signin();
+void takhirtravel();
+void driverpannel(driver);
+void cutomer (struct customer);
+
+
+struct leader l;
+struct driver d;
+struct customer c;
+/////////////////////////////////////
+
+void hi();
+void hi()
+{
+	system("color 3A");
+	Sleep(100);
+	cout<<"\t\t$$$$$$         $$$$$$       $$$$$$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$$$$$$$$$$$$$$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$$$$$$$$$$$$$$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t $$$$           $$$$          $$$$$"<<endl;
+	cout<<"\t\t$$$$$$         $$$$$$       $$$$$$$$$"<<endl;
+	cout<<"\n\n\n\n\n\nMAKING BY MAHDI AND HOSSEIN\n\nenter on thing to start"<<endl;
+	char a;
+	cin>>a;
+	system("color 7A");
+	system("cls");
+}
+void bus();
+void bus()
+{
+		system("color 3B");
+	cout <<endl;
+
+	for (int i=0;i<40;i++)
+	{
+		system("cls");	
+		for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@    @@@@@    @@@@@    @@@@@    @@@@@@    @@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@    @@@@@    @@@@@    @@@@@    @@@@@@    @@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@D"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@/   \\@@@@@@@@@@@@@@@@@@@@@@@@@@@@/   \\@@@@@@@@"<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"@@@@@@@@\    /@@@@@@@@@@@@@@@@@@@@@@@@@@@@\    /@@@@@@@@"<<endl;   
+for(int j=i;j>0;j--) cout<<"  ";
+     Sleep(20)	;
+	}
+}
+void bye();
+void bye()
+{   system("color 3B");
+cout<<"\n\n";
+	cout<<"          BBBBBBBBB                             YYYYYYYYYYY         YYYYYYYYY            EEEEEEEEEEEEEEEEEEEEEEEEE                                                      "<<endl;
+	cout<<"           BBBBBBBBBBBBBBBBBBBB                   YYYYYYYYY         YYYYYYYY             EEEEEEEEEEEEEEEEEEEEEEEEEE                                "<<endl;
+	cout<<"           BBBBBBBBBBBBBBBBBBBBBBB                  YYYYYYY         YYYYYY               EEEEEE                   EE                   "<<endl;
+	cout<<"           BBBBBBBBBBBBBBBBBBBBBBBB                  YYYYYY        YYYYYY                EEEEE                    E                  "<<endl;
+	cout<<"           BBBBBB   BBB    BBBBBBBBB                   YYYYY      YYYYY                  EEEEE                                        "<<endl;
+	cout<<"           BBBBB            BBBBBBBBB                    YYYY    YYYY                    EEEEE                                        "<<endl;
+	cout<<"           BBBBBB          BBBBBBBBB                       YYYYYYY                       EEEEE                                  "<<endl;
+	cout<<"           BBBBBBB        BBBBBBBBB                          YYYY                        EEEEE                   E                "<<endl;
+	cout<<"           BBBBBBBB      BBBBBBBBB                           YYYY                        EEEEEE                  EE                 "<<endl;
+	cout<<"           BBBBBBBBB   BBBBBBBBB                             YYYY                        EEEEEEEEEEEEEEEEEEEEEEEEEE                                         "<<endl;
+	cout<<"           BBBBBBBBBB BBBBBBBB                               YYYY                        EEEEEEEEEEEEEEEEEEEEEEEEEE                               "<<endl;
+	cout<<"           BBBBBBBBBBBBBBBBBB                                YYYY                        EEEEEE                  EE                  "<<endl;
+	cout<<"           BBBBBB   BBB   BBBBBB                            YYYYYY                       EEEEE                   E                 "<<endl;
+	cout<<"           BBBBB           BBBBBBB                         YYYYYYYY                      EEEEE                               "<<endl;
+	cout<<"           BBBBBB         BBBBBBBBBB                      YYYYYYYYYY                     EEEEE                                  "<<endl;
+	cout<<"           BBBBBBB       BBBBBBBBBBBBB                   YYYYYYYYYYYY                    EEEEE                                   "<<endl;
+	cout<<"           BBBBBBBB     BBBBBBBBBBBBBBB                 YYYYYYYYYYYYYY                   EEEEE                                    "<<endl;
+	cout<<"           BBBBBBBBB   BBBBBBBBBBBBBBBB                YYYYYYYYYYYYYYYY                  EEEEE                    E                     "<<endl;
+	cout<<"           BBBBBBBBBB BBBBBBBBBBBBBBBB                YYYYYYYYYYYYYYYYYY                 EEEEE                   EE                        "<<endl;
+	cout<<"           BBBBBBBBBBBBBBBBBBBBBBBBBB                YYYYYYYYYYYYYYYYYYYY                EEEEEEEEEEEEEEEEEEEEEEEEEE                                      "<<endl;
+	cout<<"          BBBBBBBBB                                 YYYYYYYYYYYYYYYYYYYYYY               EEEEEEEEEEEEEEEEEEEEEEEEE                          "<<endl;
+	
+
+
+}
+void plane();
+void plane()
+{
+	system("color 3B");
+	cout<<"\n\n\n";
+	for(int i=0;i<45;i++)
+	{   system("cls");
+	for(int j=25-i;j>0;j--) cout<<"\n";
+	for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                       0 0 0                          "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                      0xxxxxx0                                "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                       0xxxxxx0                                "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                        0xxxxxxx0                               "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                         0xxxxxxx0                                 "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                         0xxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                           0xxxxxxx0                                          "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"         0000                               000000000     v0000000                     "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"       00000000000000000000000000000000000000000000000000000000000000                  "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"      $$$$$$$$$  $$$$$$$  $$$$$$$  $$$$$$  $$$$$$$  $$$$$$  $$$  $$0000             "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"     0$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$000000             "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"      $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$000000000         "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"       000000000000000000000000000000000000000000000000000000000000000000    "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"          00000         00000000000000000  00000000000 0000000000000                              "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                            0xxxxxxxx0                          "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                           0xxxxxxxx0                                    "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                          0xxxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                         0xxxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                        0xxxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                       0xxxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                      0xxxxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                      0xxxxxx0                                        "<<endl;
+ for(int j=i;j>0;j--) cout<<" ";
+ cout<<"                                       0 0 0                                        "<<endl;
+ Sleep(10);
+ }
+}
+
+void train();
+void train()
+{
+	for(int i=0;i<15;i++)
+{
+system("cls");
+char ch=176+i%3;
+cout<<"\n\n";
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"                                                                                      "<<ch<<ch<<ch<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"                                                                                      "<<ch<<ch<<ch<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ    QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ            / \\             "<<endl;
+for(int j=i;j>0;j--) cout<<"  "; 
+cout<<"QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ    QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ            | |             "<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ    QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ       0000000000         "<<endl; 
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ    QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ       0000000000         "<<endl;
+for(int j=i;j>0;j--) cout<<"  "; 
+cout<<"QQQQQQQQQQQQQQQ=====QQQQQQQQQQQQQQQ====QQQQQQQQQQQQQQQ=====QQQQQQQQQQQQQQQ=======0000000000D       "<<endl;
+for(int j=i;j>0;j--) cout<<"  "; 
+cout<<"QQQQQQQQQQQQQQQ=====QQQQQQQQQQQQQQQ====QQQQQQQQQQQQQQQ=====QQQQQQQQQQQQQQQ=======0000000000D       "<<endl;
+for(int j=i;j>0;j--) cout<<"  "; 
+cout<<"QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ    QQQQQQQQQQQQQQQ     QQQQQQQQQQQQQQQ        000 000         "<<endl;
+for(int j=i;j>0;j--) cout<<"  ";
+cout<<"QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ    QQQ  QQQQQ  QQQ     QQQ  QQQQQ  QQQ        000 000         "<<endl;
+
+Sleep(100);
+}
+}
+
+
+//////////////////////////////////////////////////////*/
+void showtravelforcustomer(struct customer c1)
+{
+	ifstream f1("safar",ios::binary);
+	if(!f1) cout<<"error in openning safar in show travel for customer\n";
+	struct history h1;
+	system("color 0A");
+	while(f1.read((char*)&h1,sizeof(struct history))!=NULL)
+	{
+		for(int i=0;;i++)
+		{
+			if(h1.account[i]==0) break;
+			if(h1.account[i]==c1.balance)
+			{
+				if(h1.vasile==1) cout<<"bus:\t";
+				if(h1.vasile==2) cout<<"train:\t";
+				if(h1.vasile==3) cout<<"plane:\t";
+				printf("number:%d\taz %d\tbe %d\tbagheimat %d\t  date:%d/%d/%d\ttime%d:%d\n",h1.number,h1.bigining,h1.distination,h1.price,h1.date[0],h1.date[1],h1.date[2],h1.time[0],h1.time[1]);
+				break;
+			}
+		}
+	}
+	f1.close();
+}
+
+void takhirtravel(int number)
+{
+	struct history h1;
+	fstream f1("safar",ios::binary|ios::in|ios::out|ios::ate);
+	if(!f1) cout<<"error in opening safar in takhitravel\n";
+	f1.seekg(0,ios::beg);
+	while(f1.read((char*) &h1,sizeof(struct history))!=NULL)
+	{
+		if(h1.number==number)
+		{
+			cout<<"\nenter your new year:\t";
+			cin>>h1.date[0];
+			cout<<"\nenter your new month:\t";
+			cin>>h1.date[1];
+			cout<<"\nenter your new day:\t";
+			cin>>h1.date[2];
+			cout<<"\nenter your new hour:\t";
+			cin>>h1.time[0];
+			cout<<"\nenter your new minitue:\t";
+			cin>>h1.time[1];
+			int andaze=f1.tellg();
+			f1.seekp(andaze-sizeof(struct history),ios::beg);
+			f1.write((char*)&h1,sizeof(struct history));
+			cout<<"your changs saved successfully.\n";
+			break;
+		}
+	}
+	f1.close();
+}
 int driversazi()
 {
 	system("cls");
@@ -245,39 +502,184 @@ void showtravelsforleader()
 					printf("\n%d\t%s\t%d\t%d\t%d\t%d\t",h1.number,vasile,h1.bigining,h1.distination,b,h1.price);
 			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			        cout<<"coustomers:\n";
-			        for(int i=0;i<500;i++)
-			          {   if(h1.sarneshinan[i][0]==NULL);
-			            break;
-			        	printf("%d)\t%s\n",i+1,h1.sarneshinan[i]);
+			        int n;
+			        ifstream f9("ghematzarfiyatsorat",ios::binary);
+			        if(!f9) cout<<"error gheymatzarfia.. in show sfar for driver\n";
+			        struct gzs gz;
+			        f9.read((char*)&gz,sizeof(struct gzs));
+			        if(h1.vasile==1)
+			        n=gz.zarfiyat[0];
+			        if(h1.vasile==2)
+			        n=gz.zarfiyat[1];
+			        if(h1.vasile==3)
+			        n=gz.zarfiyat[2];
+			        f9.close();
+			        for(int i=0;i<n;i++)
+			          {  // if(strlen(h1.sarneshinan[i])==0) break;
+			        	printf("%d) %s\t",i+1,h1.sarneshinan[i]);
+			        	if(i%6==0)cout<<"\n";
 				      }
 				      cout<<endl<<endl;
 				}
 			        file.close();
 }
 
+void showtravelsfordriver(driver d1)
+{
+     int a; //zarfiyat avaliye har safar ke haman zarfiyat tayiniye modir ast
+     int b; //zarfiyat por shode vasile
+	struct gzs s12; 
+	struct history h1;
+	 ifstream file("safar",ios::binary);
+	  ifstream f1("ghematzarfiyatsorat",ios::binary);
+	  f1.read((char*)&s12,sizeof(struct gzs)); //zarfiyat avaliye safaro bara har vasile bedanim
+	                if(!f1)
+	                {cout<<"error in opening siyasat gheymatgozari file";
+	                exit(0);
+					}
+		         	if (!file) 
+		        	{
+		         		cout<<"error in opening safar binary file";
+		        		exit(0);
+		        	}
+		        	printf("number\tvehicle\tstart\tend\tporshode\tprice\t date\t time of start \t time of travel\n");
+		        	while(1)
+		       	    {  char vasile[10];
+					file.read((char *)&h1,sizeof(struct history));
+					if(file.eof()) break;
+					if(h1.ranandeaccount==d1.balance)
+				{
+			    	if(h1.vasile==1)
+			        {   a=s12.zarfiyat[0]; //bus
+			            strcpy(vasile,"bus");
+				    }
+					if(h1.vasile==2)
+			    	{   a=s12.zarfiyat[1]; //train
+				        strcpy(vasile,"train");
+				    }
+					if(h1.vasile==3)
+			    	{   a=s12.zarfiyat[2]; //airplane
+			            strcpy(vasile,"airplane");
+				    }
+				    b=a-h1.capasity;
+					printf("\n%d\t%s\t%d\t%d\t%d\t%d\t",h1.number,vasile,h1.bigining,h1.distination,b,h1.price);
+			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
+			        cout<<"coustomers:\n";
+			        int n;
+			        ifstream f9("ghematzarfiyatsorat",ios::binary);
+			        if(!f9) cout<<"error gheymatzarfia.. in show sfar for driver\n";
+			        struct gzs gz;
+			        f9.read((char*)&gz,sizeof(struct gzs));
+			        if(d1.vasile==1)
+			        n=gz.zarfiyat[0];
+			        if(d1.vasile==2)
+			        n=gz.zarfiyat[1];
+			        if(d1.vasile==3)
+			        n=gz.zarfiyat[2];
+			        f9.close();
+			        for(int i=0;i<n;i++)
+			          {  // if(strlen(h1.sarneshinan[i])==0) break;
+			        	printf("%d) %s\t",i+1,h1.sarneshinan[i]);
+			        	if(i%6==0)cout<<"\n";
+				      }
+				      cout<<endl<<endl;						
+				}
+
+				}
+			        file.close();
+}
+
 void showtrakonesh(int account)
 {
-	struct account a1;
+	struct tarakonesh t1;
 	ifstream f1("trakonesh",ios::binary);
-	while(f1.read((char*)&a1,sizeof(account))!=NULL)
+	system("color 2E");
+	while(f1.read((char*)&t1,sizeof(tarakonesh))!=NULL)
 	{
-		if(a1.balance==account)
-		  cout<<"mablagh taghir yafte:\t"<<a1.inventory<<endl;
+		if(t1.account==account)
+		  cout<<"mablagh: "<<t1.andaze<<"\t"<<t1.date[0]<<"/"<<t1.date[1]<<"/"<<t1.date[3]<<"\t"<<t1.time[0]<<":"<<t1.time[1]<<endl;
 	}
+	system("color 0A");
 	f1.close();
 }
 
-
+void safarrafte()//sefr kardan number safar haie rafete shode
+{
+	struct history h1;
+	fstream f1("history",ios::binary|ios::in|ios::out|ios::ate);
+	if(!f1) 
+	{
+	cout<<"error in opening history in safarrafte"<<endl;
+	return ;	
+	}
+	f1.seekg(0,ios::beg);
+	time_t now = time(0);
+	// cout << "Number of sec since January 1,1900:" << now << endl;
+	tm *ltm = localtime(&now);
+	while(f1.read((char*)&h1,sizeof(struct history))!=NULL)
+	{
+		if(h1.date[0]<=(1900 + ltm->tm_year))
+		  {
+		  	if(h1.date[0]<(1900 + ltm->tm_year))
+		  	        {
+		             	h1.number==-1;
+		             	int a=f1.tellg();
+		             	f1.seekp(a-sizeof(struct history),ios::beg);
+		             	f1.write((char*)&h1,sizeof(struct history));
+					 }
+		    if(h1.date[1]<=(1+ ltm->tm_mon))
+		     {
+		     	if(h1.date[1]<(1+ltm->tm_mon))
+		     	{
+		             	h1.number==-1;
+		             	int a=f1.tellg();
+		             	f1.seekp(a-sizeof(struct history),ios::beg);
+		             	f1.write((char*)&h1,sizeof(struct history));
+					 }
+		     	if(h1.date[2]<=(ltm->tm_mday))
+		        {
+		        	if(h1.date[2]<(ltm->tm_mday))
+		        	{
+		             	h1.number==-1;
+		             	int a=f1.tellg();
+		             	f1.seekp(a-sizeof(struct history),ios::beg);
+		             	f1.write((char*)&h1,sizeof(struct history));
+					 }
+		        	if(h1.time[0]<=(ltm->tm_hour))
+		          {
+		          	if(h1.time[0]<( ltm->tm_hour))
+		          	{
+		             	h1.number==-1;
+		             	int a=f1.tellg();
+		             	f1.seekp(a-sizeof(struct history),ios::beg);
+		             	f1.write((char*)&h1,sizeof(struct history));
+					 }
+		          	if(h1.time[1]<( ltm->tm_min))
+		             {
+		             	h1.number==-1;
+		             	int a=f1.tellg();
+		             	f1.seekp(a-sizeof(struct history),ios::beg);
+		             	f1.write((char*)&h1,sizeof(struct history));
+					 }
+				  }
+				}
+	    	}
+	}
+	
+}
+f1.close();
+}
 void canceltravelkoli(history h1)
 {
 	for(int i=0;;i++)
 	{
-		if(h1.account[i]!=NULL)
+		if(h1.account[i]!=0)
 		{
 			int a=editaccount(h1.account[i],h1.price);
 		}
 		else
 		{
+			if (i==0)break;
 			int a=editaccount(h1.ranandeaccount,-h1.price*i*90/100);
 			ifstream f1("nessesary",ios::binary);
 			struct leader l1;
@@ -298,14 +700,14 @@ void canceltravelkoli(history h1)
 		{
 			h2.number=0;
 			cout<<"canceling was sucessfull"<<endl;
-			f2.seekp(f2.tellg()-sizeof(struct history),ios::beg);
+			int a=f2.tellg();
+			f2.seekp(a-sizeof(struct history),ios::beg);
 			f2.write((char*)&h2,sizeof(struct history));
 			f2.close();
 		}
 	}
 	
 }
-
 
 int editaccount(int account ,int mablagh)//baraie kam va ziad kardan az ie hesab
 {
@@ -330,17 +732,29 @@ int editaccount(int account ,int mablagh)//baraie kam va ziad kardan az ie hesab
 			else 
 			{
 				a1.inventory += mablagh;
-				f1.seekp(f1.tellg()-sizeof(struct account),ios::beg);
+				int w=f1.tellg();
+				f1.seekp(w-sizeof(struct account),ios::beg);
 				f1.write((char *)&a1,sizeof(struct account));
 				f1.close();
 				ofstream f2("trakonesh",ios::binary|ios::app);
 				if(!f2) 
 				{
-				cout<<"no trakonesh";
+				cout<<"no trakonesh file";
 				exit(0);
 			    }
-				a1.inventory=mablagh;
-				f2.write((char*)&a1,sizeof(struct account));
+				struct tarakonesh tr1;
+				tr1.account=a1.balance;
+				tr1.pass=a1.pass;
+				tr1.andaze=mablagh;
+				time_t now = time(0);
+                //cout << "Number of sec since January 1,1970:" << now << endl;
+                tm *ltm = localtime(&now);
+                tr1.date[0]=1900 + ltm->tm_year;
+                tr1.date[1]=1 + ltm->tm_mon;
+                tr1.date[2]=ltm->tm_mday;
+                tr1.time[0]= ltm->tm_hour;
+                tr1.time[1]=1 + ltm->tm_min;
+				f2.write((char*)&tr1,sizeof(struct tarakonesh));
 				f2.close();
 				return 1;
 			}
@@ -372,7 +786,7 @@ void cancelblit(int number,customer c1)
 					int a=editaccount(h1.account[i],h1.price*90/100);
 					h1.account[i]=0;
 					a=editaccount(h1.ranandeaccount,-h1.price*90/100*90/100);
-					ifsream file1("nessesary",ios::binary);
+					ifstream file("nessesary",ios::binary);
 					if(!file) cout<<"error in opening nessesary in cancel travel"<<endl;
 					struct leader l1;
 					file.read((char*)&l1,sizeof(struct leader));
@@ -382,50 +796,6 @@ void cancelblit(int number,customer c1)
 			}
 			
 		}
-	}
-}
-
-
-void driverpannel(driver d1)
-{
-	system("cls");
-	printf("Hello %s/n",d1.username);
-	int number;
-	while(1)
-	{
-		cout<<"\n***************************************************************************************\n";
-		cout<<"enter one number\n";
-		cout<<"0:exit\n";
-		cout<<"1:edit profile\n";
-		cout<<"2:tarif safar\n";
-		cout<<"3:edit travel\n";
-		cout<<"4:hazf safar\n";
-		cout<<"5:tarikhche safar ha\n";
-		cout<<"******************************************************************************************\n";
-		cin>>number;
-		switch(number)
-		{
-			case 0:{
-				return;
-				break;
-			}
-			
-			case 1:{
-				
-				break;
-			}
-		}
-		
-	}
-}
-
-void customerpannel(customer s1)
-{
-	system("cls");
-	printf("Hello  %s/n",s1.name);
-	while(1)
-	{
-		
 	}
 }
 
@@ -451,13 +821,17 @@ void safargiricustomer(customer s1)
 		        		exit(0);
 		        	}
 		        	system("cls");
-		        	printf("number\tvehicle\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
+		        	printf(" number\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
 		        	cout<<"-------------------------------------------------------------------------------------------------";
 		        	while(1)
 		        	{
 			    	file.read((char *)&h1,sizeof(struct history));
 			    	if(file.eof()) break;
-			    	printf("\n%d\t%d\t %d\t %d\t  %d  \t    %d  ",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	if(h1.number==0 && h1.number==-1) continue;
+			        if(h1.vasile==1)cout<<"\nbus: ";
+			        if(h1.vasile==2)cout<<"\ntrain: ";
+			       	if(h1.vasile==3)cout<<"\nplane: ";
+			    	printf("%d\t%d\t %d\t %d\t  %d  \t    %d  ",h1.number,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			        }
 			        file.close();
@@ -477,14 +851,17 @@ void safargiricustomer(customer s1)
 	            	cin>>h2.distination;
 	            	ifstream file("safar",ios::binary);
 	            	if(!file) exit(-1);
-	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
+	            	printf(" number\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
 	            	while(1)
 	            	{
 	            		file.read((char *)&h1,sizeof(struct history));
 	            		if(file.eof()) break;
-	            		if (h1.bigining==h2.bigining && h1.distination==h2.distination)
+	            		if (h1.bigining==h2.bigining && h1.distination==h2.distination &&h1.number!=0 && h1.number!=-1)
 	            		{
-	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			        if(h1.vasile==1)cout<<"\nbus: ";
+			        if(h1.vasile==2)cout<<"\ntrain: ";
+			       	if(h1.vasile==3)cout<<"\nplane: ";
+	            			printf("%d\t%d\t%d\t%d\t%d\t",h1.number,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 						}
 					}
@@ -522,8 +899,11 @@ void safargiricustomer(customer s1)
 			    	        	return;
 							}
 			    	        
-							printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
-							printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+							printf(" \n number\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
+			    	if(h1.vasile==1)cout<<"\nbus: ";
+			    	if(h1.vasile==2)cout<<"\ntrain: ";
+			    	if(h1.vasile==3)cout<<"\nplane: ";							
+							printf("%d\t%d\t%d\t%d\t%d\t",h1.number,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			    	        cout<<"\nare you sure you wanna take this?(y/n)";
 			    	        char c;
@@ -532,9 +912,11 @@ void safargiricustomer(customer s1)
 			    	        int dor=editaccount(s1.balance,-h1.price);///////////////*********
 							if (dor==0) break;//yani pol nadashte
 			    	        h1.capasity--;
+			    	        
+			    	        
 			    	        for(int i=0;;i++)
 			    	        {
-			    	        	if(h1.sarneshinan[i][0]==NULL)
+			    	        	if(strlen(h1.sarneshinan[i])==0)
 			    	        	{
 			    	        		strcpy(h1.sarneshinan[i],s1.username);
 			    	        		break;
@@ -542,14 +924,15 @@ void safargiricustomer(customer s1)
 							}
 							for(int i=0;i<500;i++)
 							{
-								if(h1.account[i]==NULL)
+								if(h1.account[i]==0)
 								{
-									strcpy(h1.account[i],s1.balance);
+									h1.account[i]=s1.balance;
 									break;
 								}
 								
 							}
-							f1.seekp(f1.tellg()-sizeof(struct history),ios::beg);
+							int w=f1.tellg();
+							f1.seekp(w-sizeof(struct history),ios::beg);
 							f1.write((char*)&h1,sizeof(struct history));
 							f1.close();
 							struct account acc;
@@ -563,7 +946,10 @@ void safargiricustomer(customer s1)
 							f4.read((char*)&l1,sizeof(struct leader));
 							f4.close();
 							dor=editaccount(l1.balance,10*h1.price/100);
-							cout<<"you take the travel successfully\n";
+						                	if(h1.vasile==1) bus();
+						                	if(h1.vasile==2) train();
+						                	if(h1.vasile==3) plane();							
+							cout<<"\nyou take the travel successfully\n";
 							
 						}
 					}
@@ -597,13 +983,17 @@ void safargiriadi()
 		        		exit(0);
 		        	}
 		        	system("cls");
-		        	printf("number\tvehicle\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
+		        	printf(" number\tstart\tend\tcapasity   price\tdate\ttime of start\ttime of travel\n");
 		        	cout<<"-------------------------------------------------------------------------------------------------";
 		        	while(1)
 		        	{
 			    	file.read((char *)&h1,sizeof(struct history));
 			    	if(file.eof()) break;
-			    	printf("\n%d\t%d\t %d\t %d\t  %d  \t    %d  ",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+			    	if(h1.number==0 && h1.number==-1) continue;
+			        if(h1.vasile==1)cout<<"\nbus: ";
+			        if(h1.vasile==2)cout<<"\ntrain: ";
+			       	if(h1.vasile==3)cout<<"\nplane: ";
+			    	printf("%d\t%d\t %d\t  %d  \t    %d  ",h1.number,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			        }
 			        file.close();
@@ -623,14 +1013,17 @@ void safargiriadi()
 	            	cin>>h2.distination;
 	            	ifstream file("safar",ios::binary);
 	            	if(!file) exit(-1);
-	            	printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
+	            	printf("\n number\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n------------------------------------------------------------");
 	            	while(1)
 	            	{
 	            		file.read((char *)&h1,sizeof(struct history));
 	            		if(file.eof()) break;
-	            		if (h1.bigining==h2.bigining && h1.distination==h2.distination)
+	            		  		if (h1.bigining==h2.bigining && h1.distination==h2.distination &&h1.number!=0 && h1.number!=-1)
 	            		{
-	            			printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+	            			if(h1.vasile==1)cout<<"\nbus: ";
+			            	if(h1.vasile==2)cout<<"\ntrain: ";
+			            	if(h1.vasile==3)cout<<"\nplane: ";
+	            			printf("%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 						}
 					}
@@ -668,19 +1061,26 @@ void safargiriadi()
 			    	        	return;
 							}
 			    	        
-							printf("number\tvehicle\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
-							printf("\n%d\t%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
+							printf("number\tstart\tend\tcapasity\tprice\t date\t time of start \t time of travel\n");
+						   if(h1.vasile==1)cout<<"\nbus: ";
+			               if(h1.vasile==2)cout<<"\ntrain: ";
+			            	if(h1.vasile==3)cout<<"\nplane: ";
+							printf("%d\t%d\t%d\t%d\t%d\t",h1.number,h1.vasile,h1.bigining,h1.distination,h1.capasity,h1.price);
 			    	        cout<<h1.date[0]<<"/"<<h1.date[1]<<"/"<<h1.date[2]<<"\t"<<h1.time[0]<<":"<<h1.time[1]<<"\t\t"<<h1.traveltime[0]<<":"<<h1.traveltime[1]<<endl;
 			    	        cout<<"\nare you sure you wanna take this?(y/n)";
 			    	        char c;
 			    	        cin>>c;
 			    	        if(c=='n')break;
-			    	        
-			    	        for(;1;)
+			    	        int accont1;
+			    	        for(int i=0;1;i++)
 			    	        {
-			    	        	if(h1.sarneshinan[i][0]==NULL)
-	                              cout<<"\nenter your account:\t";
-	                            int accont1;
+			    	        		
+			    	        	if(strlen(h1.sarneshinan[i])!=0)
+	                              continue;
+	                              
+	                            int account1;
+	                            system("cls");
+	                            cout<<"please enter your accunt:\t";
 	                            cin>>account1;
 	                            ifstream file("accounts",ios::binary);
 	                            if(!file)
@@ -693,43 +1093,55 @@ void safargiriadi()
 	                            {
 	                            	if(c4.balance==account1)
 	                            	{
-	                            		int dor=editaccount(c4.balance,-h1.price);
-	                            		if(dor==0) break;
+	                            		
+	                            		
 	                            		
 	                            		for(int i=0;i<3;i++)
 	                            		{
-										cout<<"\nenter your account password:\t":
+										cout<<"\nenter your account password:\t";
 	                            		int pass;
 										cin>>pass;
+										
 										if(pass==c4.pass)
 										{
 										    char username[30];
-	        
+	                                        int dor;
+											dor=editaccount(c4.balance,-h1.price);
+	                                        if(dor==0)
+	                                        {
+	                                        	return;
+											}
 	                                        for(int f=0,account2=account1;account2!=0;f++)//tabdil int account be char username
 	                                         {
-	                                         	username[f]=account%10;
-	                                         	acount2/=10;
+	                                         	username[f]=account2%10+48;
+	                                         	account2/=10;
 							              	}
-							            	for(char temp,int f=strlen(username)-1;f>0;f-=2)
+							              	char temp;
+							            	for(int f=strlen(username)-1;f>0;f-=2)
 								            {
 								            	temp=username[f];
-								             	username[f]=username[strlen(usernaame)-1-f];
-								            	username[strlen(usernaame)-1-f]=temp;
+								             	username[f]=username[strlen(username)-1-f];
+								            	username[strlen(username)-1-f]=temp;
 							              	}
 							                h1.capasity--;
 			    	                    	strcpy(h1.sarneshinan[i],username);
 			    	                    	for(int r=0;;r++)
 			    	                    	{
-			    	                    		if(h1.account[r]==NULL)
+			    	                    		if(h1.account[r]==0)
 			    	                    		{
-			    	                    			strcpy(h1.account[r],account1);
+			    	                    			h1.account[r]=account1;
 			    	                    			break;
 												}
 											}
-                      	                   f1.seekp(f1.tellg()-sizeof(struct history),ios::beg);
+											int c=f1.tellg();
+											
+										
+							
+                      	                   f1.seekp(c-sizeof(struct history),ios::beg);
 						                   f1.write((char*)&h1,sizeof(struct history));
 						                	f1.close();
 						                	struct account acc;
+						                	
 						                 	dor =editaccount(h1.ranandeaccount,90*h1.price/100);
 							               struct leader l1;
 						                	ifstream f4("nessesary",ios::binary);
@@ -738,15 +1150,21 @@ void safargiriadi()
 						                	f4.read((char*)&l1,sizeof(struct leader));
 						                	f4.close();
 						                	dor=editaccount(l1.balance,10*h1.price/100);
-						                  	cout<<"you take the travel successfully\n";	
-						                	goto l1:										
+						                	if(h1.vasile==1) bus();
+						                	if(h1.vasile==2) train();
+						                	if(h1.vasile==3) plane();
+						                  	cout<<"\nyou take the travel successfully\n";	
+						                  	cout<<"enter one characture to contininue\t";
+						                  	char gh;
+						                  	cin >>gh;
+						                	goto l1;//////////15 khat paeen										
 										}	
 										}
 									}
 								}
 								cout<<"your accoun number not exist do you wanna  enter another one?(y/n).\n";
 								char g;
-								cin>>g
+								cin>>g;
                                 if(g=='n')break;
 							}
 							
@@ -944,8 +1362,11 @@ int editdriver(driver d2)
 						ifstream f4("accounts",ios::binary);
 						struct account a1;
 					
-							cout<<"enter your new balance:\t";
-							cin>>d1.balance;
+                        while(1)
+							{
+								int f=0;
+								cout<<"enter your new account:\t";
+								cin>>d1.balance;
 							while(f4.read((char *)&a1,sizeof(struct account))!=NULL)
 							{
 								
@@ -959,17 +1380,27 @@ int editdriver(driver d2)
 								    	{
 								    		
 								    		f4.close();
-								    		goto l1;//dard nachary gozashtam mire ghable break chand khat paiin tar
+								    		f=1;
+								    		break;//dard nachary gozashtam mire ghable break chand khat paiin tar
 										}
 								    	else cout<<"\nyour password was rang \nyou have"<<2-r<<" times\n";
 									}
 								}
-								cout<<"your balance is not exist enter another one:\t";
-								cin>>d1.balance;
-								f4.seekg(0,ios::beg);
+								
+								
+								
 							}
-						
-					    l1:break;
+							if(f==1) break;
+					cout<<"your balance is not exist enter another one:\t";
+					cin>>d1.balance;							
+					f4.seekg(0,ios::beg);
+					char cha;
+					cout<<"do you want to exit?(y/n)\t ";
+					cin>>cha;
+					if(cha=='n') break;
+					
+					}
+					    break;
 					}
 				case 7:{
 					cout<<"enter the number of your vehicle.\n1:bus\t2:tran\t3:plane\n";
@@ -989,7 +1420,8 @@ int editdriver(driver d2)
 	    		f2.seekp(i*sizeof(struct customer),ios::beg);
 	    		f2.write((char *)&c1,sizeof(struct customer));*/
 	    		//f1.seekp(i*sizeof(struct customer),ios::beg);
-	    		f1.seekp(f1.tellg()-sizeof(struct driver),ios::beg);
+	    		int c=f1.tellg();
+	    		f1.seekp(c-sizeof(struct driver),ios::beg);
 	    		f1.write((char *)&d1,sizeof(struct customer));
 	    		cout<<"\n your changes saved successfully.\n";
 	    		f1.close();
@@ -1081,6 +1513,9 @@ int editkarbar(customer c2)////niaz be viraiesh dare
 					
 							cout<<"enter your new balance:\t";
 							cin>>c1.balance;
+							while(1)
+							{
+								int f=0;
 							while(f4.read((char *)&a1,sizeof(struct account))!=NULL)
 							{
 								
@@ -1094,17 +1529,27 @@ int editkarbar(customer c2)////niaz be viraiesh dare
 								    	{
 								    		
 								    		f4.close();
-								    		goto l1;//dard nachary gozashtam mire ghable break chand khat paiin tar
+								    		f=1;
+								    		break;//dard nachary gozashtam mire ghable break chand khat paiin tar
 										}
 								    	else cout<<"\nyour password was rang \nyou have"<<2-r<<" times\n";
 									}
 								}
-								cout<<"your balance is not exist enter another one:\t";
-								cin>>c1.balance;
-								f4.seekg(0,ios::beg);
+								
+								
+								
 							}
-						
-					    l1:break;
+							if(f==1) break;
+					cout<<"your balance is not exist enter another one:\t";
+					cin>>c1.balance;							
+					f4.seekg(0,ios::beg);
+					char cha;
+					cout<<"do you want to exit?(y/n)\t ";
+					cin>>cha;
+					if(cha=='n') break;
+					
+					}
+
 					}
 				}
 				cout<<"do you wanna change another thing?(if not enter 'n' )\n";
@@ -1117,7 +1562,9 @@ int editkarbar(customer c2)////niaz be viraiesh dare
 	    		f2.seekp(i*sizeof(struct customer),ios::beg);
 	    		f2.write((char *)&c1,sizeof(struct customer));*/
 	    		//f1.seekp(i*sizeof(struct customer),ios::beg);
-	    		f1.seekp(f1.tellg()-sizeof(struct customer),ios::beg);
+	    
+	    		int c=f1.tellg();
+	    		f1.seekp(c-sizeof(struct customer),ios::beg);
 	    		f1.write((char *)&c1,sizeof(struct customer));
 	    		cout<<"\n your changes saved successfully.\n";
 	    		f1.close();
@@ -1132,7 +1579,8 @@ int editkarbar(customer c2)////niaz be viraiesh dare
 }
 
 int modirpanel()
-{ cout<<"Hello admin  +_+\n" ;
+{ 
+cout<<"Hello admin  +_+\n" ;
  while(1)
  
 {
@@ -1443,6 +1891,7 @@ if(a==8) //cancel safar
 if(a==9) //khorooj modir
 {
 	system("cls");
+	bye();
 return 0;
 }
 system("cls");
@@ -1450,20 +1899,279 @@ system("cls");
 }
 //a9 tamam
 }
-//payan modiriyat
 
+void driverpannel(driver d1)
+{
+	system("cls");
+	printf("Hello %s/n",d1.username);
+	int number;
+	while(1)
+	{   system("cls");
+	     system("color 0A");
+		cout<<"***************************************************************************************\n";
+		cout<<"0:exit\n";
+		cout<<"1:edit profile\n";
+		cout<<"2:tarif safar\n";
+		cout<<"3:hazf safar\n";
+		cout<<"4:tarikhche safar ha\n";
+		cout<<"5:tarakonesh\n";
+		cout<<"6.edit travel:\n";
+		cout<<"******************************************************************************************\n";
+		cout<<"Enter number:\t";
+		cin>>number;
+		system("cls");
+		switch(number)
+		{
+			case 0:{  //exit ranande
+				system("cls");
+				bye();
+				return;
+				
+			}
+			
+			case 1:{  //edit profile
+				system("cls");
+				system("color 0A");
+				cout<<"******************************************************************************************\n";
+				editdriver(d1);
+				cout<<"******************************************************************************************\n";
+				cout<<"if you want continu enter c:\t";
+				char c;
+				cin>>c;
+				break;
+			}
+	        
+	        case 2:{    //tarif safar
+	        				
+	        				system("cls");
+	        				system("color 0B");
+						      cout<<"******************************************************************************************\n";
+	        	      tayinsafarranande( d1);
+				              cout<<"******************************************************************************************\n";   
+				cout<<"if you want continu enter c:\t";
+				char c;
+				cin>>c;
+				system("cls");
+				break;
+			}
+	        case 3:{   //cancel safar
+	        	int y=0; //payin bebin
+				system("cls");
+	        	system("color 0C");
+		           cout<<"******************************************************************************************\n";   
+                    int s;
+	                cout<<"enter number of safar:\t";
+                 	cin>>s;
+                    ifstream f1("safar",ios::binary);
+                    if(!f1)
+                    {
+    	             cout<<"error in opening safar file";
+                      exit(0);
+	                 }
+                	struct history hh;
+					while(1)
+                  	{
+                  	f1.read((char*)&hh,sizeof(struct history));
+                 	if(hh.number==s)
+                 	{
+                 	 if(hh.ranandeaccount==d1.balance)
+					  break;
+					  else {
+					  	cout<<"this travel is not for you you are a bad man :( gooooo outtttttttttttttttt";
+					  	f1.close();
+					  	cout<<"if you want countinue enter c:\t";
+					  	char c;
+					  	cin>>c;
+					  	return;
+					  }
+					 }
+                    }
+                 canceltravelkoli(hh);
+				   cout<<"******************************************************************************************\n";   
+         	   		cout<<"ok. cancel travel \nif you want continu enter c:\t";
+		   		char c;
+				cin>>c;
+				system("cls");
+	           	break;
+         	}
+	
+	        case 4:{   //tarikhche safar
+	        		system("cls");
+	        	system("color 0C");
+		           cout<<"******************************************************************************************\n";   
+                   showtravelsfordriver(d1);   
+				   cout<<"******************************************************************************************\n";   
+         	   		cout<<"if you see for continu enter c:\t";
+		   		char c;
+				cin>>c;
+				system("cls");
+	        	
+				break;
+			}
+	        
+	        case 5:{  //taraconesh 
+	        		system("cls");
+	        	system("color 0C");
+		           cout<<"******************************************************************************************\n";   
+                 showtrakonesh(d1.balance);
+				   cout<<"******************************************************************************************\n";   
+         	   		cout<<"if you want continu enter c:\t";
+		   		char c;
+				cin>>c;
+				system("cls");
+	        	
+				break;
+			}
+	        
+	        case 6:{  //edit safar
+	        		system("cls");
+	        	system("color 0C");
+		           cout<<"******************************************************************************************\n";   
+                 int s;
+	                cout<<"enter number of safar:\t";
+                 	cin>>s;
+                    ifstream f1("safar",ios::binary);
+                    if(!f1)
+                    {
+    	             cout<<"error in opening safar file";
+                      exit(0);
+	                 }
+                	struct history hh;
+					while(1)
+                  	{
+                  	f1.read((char*)&hh,sizeof(struct history));
+                 	if(hh.number==s)
+                 	{
+                 	 if(hh.ranandeaccount==d1.balance)
+					  break;
+					  else {
+					  	cout<<"this travel is not for you you are a bad man :( gooooo outtttttttttttttttt";
+					  	f1.close();
+					  	cout<<"if you want countinue enter c:\t";
+					  	char c;
+					  	cin>>c;
+					  	return;
+					  }
+					 }
+                    }
+                 takhirtravel(hh.number);
+				   cout<<"******************************************************************************************\n";   
+         	   		cout<<"ok takgir emal shod \nif you want continu enter c:\t";
+		   		char c;
+				cin>>c;
+				system("cls");
+	        	
+				break;
+			}
+		}
+		
+	}
+}
 
+ void cutomerpannel(struct customer d1)
+ {
+    
+ 	printf("hi my friend:\t%s %s",d1.name,d1.family);
+ 	while(1)
+ 	{ system("cls");
+ 	  system("color 0A");
+ 		cout <<"********************************************************************************************************************* \n";
+ 	cout<<"what do you do?\n";
+ 	cout<<"1.edit your profile\n";
+ 	cout<<"2.getting tiket\n";
+ 	cout<<"3.travels\n";
+ 	cout<<"4.cancel tiket\n";
+ 	cout<<"5.tarakonesh\n";
+ 	cout<<"6.exit\n";
+ 	cout <<"********************************************************************************************************************* \n";
+ 	cout<<"enter number:\t";
+ 	int a;
+ 	cin>>a;
+ 	  
+ 	if(a==1) //edit carbar
+ 	    {   system("cls");
+ 	        system("color 0A");
+ 	         	cout <<"********************************************************************************************************************* \n";
+ 	    	int n=editkarbar(d1);
+ 	    	 	cout <<"********************************************************************************************************************* \n";
+ 	    	cout<<"if you want to continue enter c:\t";
+ 	    	char c;
+ 	    	cin>>c;
+ 	    	system("cls");
+ 	    	
+	    }
+	if(a==2) //bilit giri
+	  {
+	  	system("cls");
+ 	        system("color 0B");
+	  	 	         	cout <<"********************************************************************************************************************* \n";
+	  	safargiricustomer( d1);
+	   	         	cout <<"********************************************************************************************************************* \n";
+	   	         	cout<<"if you want to continue enter c:\t";
+ 	    	char c;
+ 	    	cin>>c;
+ 	    	system("cls");
+	  }
+    if(a==3) //travels
+	  {
+	  	system("cls");
+ 	        system("color 0C");
+	  	 	         	cout <<"********************************************************************************************************************* \n";
+	  	            showtravelforcustomer(d1);
+	   	         	cout <<"********************************************************************************************************************* \n";
+	   	         	cout<<"if you want to continue enter c:\t";
+ 	    	char c;
+ 	    	cin>>c;
+ 	    	system("cls");
+	  }
+	if(a==4) //cancel bilit
+	  {
+	  	system("cls");
+ 	        system("color 0D");
+	  	 	         	cout <<"********************************************************************************************************************* \n";
+	  	 	         	cout<<"enter number of travel:\t";int n;cin>>n;
+	  	                 cancelblit(n,d1);
+	   	         	cout <<"********************************************************************************************************************* \n";
+	   	         	cout<<"if you want to continue enter c:\t";
+ 	    	char c;
+ 	    	cin>>c;
+ 	    	system("cls");
+	  }
+	  if(a==5) //tarakonesh
+	  {
+	  	system("cls");
+ 	        system("color 0D");
+	  	 	         	cout <<"********************************************************************************************************************* \n";
+	  	 	         showtrakonesh(d1.balance);
+	   	         	cout <<"********************************************************************************************************************* \n";
+	   	         	cout<<"if you want to continue enter c:\t";
+ 	    	char c;
+ 	    	cin>>c;
+ 	    	system("cls");
+	  }
+	  if(a==6) //exit
+	  {
+	  	system("cls");
+	  	bye();
+	  	return;
+ 	    	
+	  }	
+	} 
+ }
 int signin()  //sabt nam karbar
 {
 	system("cls");
 	struct customer c1,c2;//c1 baraie file va c2 baraie karbar
+	 cout <<"********************************************************************************************************************* \n";
 	cout<<"\nenter your name:\t";
 	scanf("%s",c2.name);
+	 cout <<"********************************************************************************************************************* \n";
 	cout<<"enter your family:\t";
 	scanf("%s",c2.family);
-	cout<<"HELLO \n enter your user name :\t";
+	 cout <<"********************************************************************************************************************* \n";
+	cout<<"enter your user name :\t";
 	scanf("%s",c2.username);
-	
+	 cout <<"********************************************************************************************************************* \n";
 	ifstream f3("customers",ios :: binary);
 	
 		if(!f3)
@@ -1477,20 +2185,24 @@ int signin()  //sabt nam karbar
 		
 		if(strcmp(c1.username,c2.username)==0)
 		{
-			cout<<"\n your user name is used befor.\nplease enter user name:\t";
+			cout<<"\nyour user name is used befor.\nplease enter user name:\t";
 			scanf("%s",c2.username);
 			f3.seekg(0,ios :: beg);
 		}
 		
 	}
 	f3.close();
-	
+	 cout <<"********************************************************************************************************************* \n";
 	cout<<"enter your password:\t";
 	scanf("%s",c2.password);
+	 cout <<"********************************************************************************************************************* \n";
 	cout<<"enter the username of your moaref (if you do not have just enter 0):\t";
 	scanf("%s",c2.moaref);
+	 cout <<"********************************************************************************************************************* \n";
+
 	cout<<"enter your phone number:\t";
 	scanf("%s",c2.phone);
+ cout <<"********************************************************************************************************************* \n";
 	//f1.seekg(0,ios :: beg);
     ifstream f1("accounts", ios :: binary );
     	if(!f1)
@@ -1508,13 +2220,15 @@ int signin()  //sabt nam karbar
 	 	
 	 	if(a.balance == b.balance)
 	 	 {
-	 		
+	 	
 	 		for(int i=0;i<3;i++)
-	 		{
+	 		{ cout <<"********************************************************************************************************************* \n";
 	 			cout<<"\n enter your password:\t";
 	 			cin>>b.pass;
+	 			 cout <<"********************************************************************************************************************* \n";
+
 	 			if(b.pass == a.pass)
-	 			{
+	 			{  
 	 				cout<<"\nyour pass was right\n";
 	 				c2.balance=a.balance;
 	 				c2.pass=a.pass;
@@ -1530,6 +2244,8 @@ int signin()  //sabt nam karbar
                        	f2.close();
                        	f1.close();
                        	cout<<"\n you sign in successfully\n";
+                       	 cout <<"********************************************************************************************************************* \n";
+
                        	return 1;
 				}
 				else cout<<"your password was false\n you can try "<<2-i<<"times"<<endl;
@@ -1539,7 +2255,7 @@ int signin()  //sabt nam karbar
 	 		
 		 }
 	 }
-	 cout<<"\n if you do not want to continue enter 'n' else enter another character";
+	 cout<<"\n\ayour account not exist.\tif you do not want to continue enter 'n' else enter another character";
 	 char l;
 	 cin>>l;
 	 if(l=='n') return 0;
@@ -1549,45 +2265,137 @@ int signin()  //sabt nam karbar
 
 int main()
 {
-	int position;
+	hi();
+	bus();
+	train();
+	plane();
+safarrafte();	
+ system("cls");
+ system("color 5A");
+ cout <<"********************************************************************************************************************* \n";
+ cout<<"wellcome to your site for travel\n"; 
+cout <<"********************************************************************************************************************* \n";
+cout<<"what do you wanna do?    :)\n";
+cout<<"1.sign in\n";
+cout<<"2.log in                         fall emrooz:                       \n";
+cout<<"                                 che jaye shokro shekayat ze naghshe niko bad ast    \n  ";
+cout<<"                                                      cho bar sahife ye asly ragham nakhahad mand.\n"; 
+cout <<"********************************************************************************************************************* \n";
+cout<<"Enter the number:\t";
+int f;
+cin>>f;
+if(f==1)
+{
+    system("cls");
+	system("color 0D");
+	cout <<"********************************************************************************************************************* \n";
+
+	int a=signin();
+	cout <<"********************************************************************************************************************* \n";
+	cout<<"Enter c for continue";
+	char c;
+	cin>>c;
+	system("cls");
+	if(c=='c') f=2;
+	else bye();
 	
-	/*struct account acc;
-	cin>>acc.balance;
-	int mablagh;
-	cin>>mablagh;
-	int a=editaccount(acc.balance,mablagh);
-	cout<<"n\n\n\n"<<a;
-	//int a=driversazi();
-//int a=signin();
-//	int b=editkarbar();
-	/*cout<<"enter the number of your position and press enter:\n 1 leder \t 2 driver \t 3 customer \t 4 no psition \n";
-	cin>>position;
-	struct leader l;
-    struct customer c;
-    struct driver d;  
-	switch(position)
-	{
-		case 1:{
-			l=loginleader();
-			break;
-		}
-		case 2:{
-			d=logindriver();
-			
-			tayinsafarranande(d);
-			break;
-		}
-		case 3:{
-			c=logincustomer();
-			safargiri(c);
-			break;
-		}
-		case 4:{
-			
-			break;
-		}
-	}
-  */
-  
-  
+}
+if(f==2)
+{
+	
+	
+	system("cls");
+	system("color 1A");
+	cout <<"********************************************************************************************************************* \n";
+    cout<<"please enter your position\n"	;
+    cout<<"1.leader\n";
+    cout<<"2.driver\n";
+    cout<<"3.customer\n";
+    cout<<"4.guest\n";
+   	cout <<"********************************************************************************************************************* \n";
+    cout<<"enter number:\t";
+    int position;
+    cin>>position;
+            switch(position)
+                   {
+                   	case 1:{
+
+						   l=loginleader();
+						   system("cls");
+                   		   modirpanel();
+						break;
+					   }
+					case 2:{
+						 d=logindriver();
+						 driverpannel(d);
+						break;
+					}
+					case 3:{
+						c=logincustomer();
+					    cutomerpannel(c);
+						break;
+					}
+					case 4:{
+						while(1)
+						{
+							system("cls");
+							system("color 3B");
+							cout<<"enter the number:\n";
+							cout<<"0.exit \n1.get a travel\n2.see trakonesh\n";
+							cout<<"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
+							
+							int a;
+							cin>>a;
+							system("cls");
+							if(a==0)
+							{
+								bye();
+								exit(0);
+								
+								////////////////
+							}
+							if(a==1) safargiriadi();
+							if(a==2)
+							{
+								struct account a1,a2;
+								cout<<"enter your account:\t";
+								cin>>a2.balance;
+								ifstream f8("accounts",ios::binary);
+								if(!f8) cout<<"error in openning accounts in main guest"<<endl;
+								while(f8.read((char*)&a1,sizeof(struct account))!=NULL)
+								{
+									if(a1.balance==a2.balance)
+									{
+										for(int i=0;i<3;i++)
+										{
+											cout<<"\nenter your password:\t";
+											cin>>a2.pass;
+											if(a1.pass=a2.pass)
+											{
+												showtrakonesh(a1.balance);
+												f8.close();
+												i=3;
+												cout<<"do you wanna continue?(y/n)";
+												char ttt;
+												cin>>ttt;
+												if(ttt=='n') exit(0);
+											}
+											else cout<<"\ayour password was rang \n";
+										}
+									}
+								}
+								
+							}
+						}
+						
+						break;
+					}
+				   }
+			}
+					
+					
+					
+//*/
+					  
+return 0;
 }
