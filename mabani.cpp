@@ -810,7 +810,8 @@ void safargiricustomer(customer s1)
 	    cin>>a;
      	switch(a)
     	{
-    		case 0:{return;
+    		case 0:{
+			return;
 				break;
 			}
 	    	case 1:{
@@ -1080,8 +1081,9 @@ void safargiriadi()
 	                              
 	                            int account1;
 	                            system("cls");
-	                            cout<<"please enter your accunt:\t";
+	                            cout<<"please enter your accunt(for exit enter 0):\t";
 	                            cin>>account1;
+	                            if(account1==0)return ;
 	                            ifstream file("accounts",ios::binary);
 	                            if(!file)
 	                            {
@@ -1098,9 +1100,10 @@ void safargiriadi()
 	                            		
 	                            		for(int i=0;i<3;i++)
 	                            		{
-										cout<<"\nenter your account password:\t";
+										cout<<"\nenter your account password(for exit enter 0):\t";
 	                            		int pass;
 										cin>>pass;
+										if(pass==0)return;
 										
 										if(pass==c4.pass)
 										{
@@ -2265,6 +2268,9 @@ int signin()  //sabt nam karbar
 
 int main()
 {
+	ShowWindow(GetConsoleWindow(),SW_MAXIMIZE);
+	SendMessage(GetConsoleWindow(),WM_SYSKEYDOWN,VK_RETURN, 0x20000000);
+	///////
 	hi();
 	bus();
 	train();
@@ -2276,6 +2282,7 @@ safarrafte();
  cout<<"wellcome to your site for travel\n"; 
 cout <<"********************************************************************************************************************* \n";
 cout<<"what do you wanna do?    :)\n";
+cout<<"0.exit\n";
 cout<<"1.sign in\n";
 cout<<"2.log in                         fall emrooz:                       \n";
 cout<<"                                 che jaye shokro shekayat ze naghshe niko bad ast    \n  ";
@@ -2284,6 +2291,12 @@ cout <<"************************************************************************
 cout<<"Enter the number:\t";
 int f;
 cin>>f;
+if(f==0)
+{
+	system("cls");
+	bye();
+	exit(0);
+}
 if(f==1)
 {
     system("cls");
@@ -2307,7 +2320,8 @@ if(f==2)
 	system("cls");
 	system("color 1A");
 	cout <<"********************************************************************************************************************* \n";
-    cout<<"please enter your position\n"	;
+    cout<<"please enter your position\n";
+	cout<<"0.exit\n";
     cout<<"1.leader\n";
     cout<<"2.driver\n";
     cout<<"3.customer\n";
@@ -2318,6 +2332,11 @@ if(f==2)
     cin>>position;
             switch(position)
                    {
+                   	case 0:{
+					   bye();
+                   	exit(0);
+						break;
+					   }
                    	case 1:{
 
 						   l=loginleader();
