@@ -1,7 +1,7 @@
 # mabani
 transportation project for mabani 1397 iut iran
 
-making buy seyed mahdi hejazi and hossein salimi
+made by seyed mahdi hejazi and hossein salimi
 
 git address : https://github.com/mahdi-hejazi/mabani.git
 
